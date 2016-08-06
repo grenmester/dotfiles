@@ -11,18 +11,28 @@
     ui = true
     status = auto
 [color "branch"]
-    current = yellow reverse
+    current = yellow bold
     local = yellow
     remote = green
 [color "diff"]
     meta = yellow bold
-    frag = magenta bold
+    frag = blue bold
     old = red bold
     new = green bold
+	whitespace = black reverse
 [color "status"]
-    added = green
+	header = normal
+	added = green
     changed = yellow
     untracked = red
+	branch = blue bold
+[color "grep"]
+	filename = blue
+	linenumber = yellow
+	match = green black bold
+	separator = normal
+[grep]
+	linenumber = true
 [core]
     editor = /usr/local/bin/vim
 [push]

@@ -10,6 +10,8 @@ alias ls="ls -F --color"
 export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/share/man:/usr/local/share/man
 export PGDATA=/usr/local/pgsql/data
+export TERM=xterm-256color
+export CLICOLOR=1
 
 #Terminal Prompt
 #solarized colors
