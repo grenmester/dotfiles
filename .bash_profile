@@ -7,7 +7,7 @@ alias g=git
 alias ls="ls -F --color"
 
 #Environmental Variables
-export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/opt/coreutils/libexec/gnubin:/anaconda/bin:/usr/:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/share/man:/usr/local/share/man
 export PGDATA=/usr/local/pgsql/data
 export TERM=xterm-256color
@@ -57,4 +57,3 @@ function parse_git_branch() {
 
 export PS1="\[${BOLD}${MAGENTA}\]\u\[$BASE1\]@\[$ORANGE\]\h \[$BLUE\]\w\[$WHITE\] \$([[ -n \$(git branch 2> /dev/null) ]])\[$VIOLET\]\$(parse_git_branch)\[$BASE1\]\$ \[$RESET\]"
 export PS2="\[${BOLD}${MAGENTA}\]→ \[$RESET\]"
-
