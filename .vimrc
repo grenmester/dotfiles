@@ -1,12 +1,31 @@
+" Plugins {{{
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-perl/vim-perl'
+Plugin 'luochen1990/rainbow'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'lervag/vimtex'
+call vundle#end()
+
+let g:rainbow_active = 0                " make rainbow off by default
+let g:instant_markdown_slow = 1         " make vim-instant-markdown refresh on only certain events
+let g:instant_markdown_autostart = 0    " turn vim-instant-markdown autostart off
+" }}}
 " Colors {{{
 syntax enable                   " enable syntax processing
 set background=dark
 colorscheme solarized
 " }}}
 " Misc {{{
+set nocompatible                " be iMproved
 set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
+filetype off
 " }}}
 " Spaces & Tabs {{{
 set tabstop=4                   "4 space tab
@@ -17,6 +36,10 @@ set modelines=1
 filetype indent on              " load filetype-specific indent files
 filetype plugin on              " use the file type plugins
 set autoindent
+set linebreak
+" }}}
+" Keybindings {{{
+map <C-n> :NERDTreeToggle<CR>
 " }}}
 " UI Layout {{{
 set number                      " show line numbers
@@ -40,7 +63,7 @@ set foldlevelstart=10           " start with fold level of 10
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
-    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre * StripWhitespace
     autocmd FileType java setlocal noexpandtab
     autocmd FileType java setlocal list
     autocmd FileType java setlocal listchars=tab:+\ ,eol:-
@@ -60,20 +83,7 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal tabstop=2
     autocmd BufEnter *.sh setlocal shiftwidth=2
     autocmd BufEnter *.sh setlocal softtabstop=2
+    autocmd BufNewFile,BufRead *.tt setf tt2
 augroup END
 " }}}
-" Custom Functions {{{
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunction
-" }}}
-
 " vim:foldmethod=marker:foldlevel=0
