@@ -9,13 +9,18 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'lervag/vimtex'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'rust-lang/rust.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-bufferline'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 
 let g:rainbow_active=0                  " make rainbow off by default
 let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on only certain events
 let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
+let g:airline_powerline_fonts=1         " automatically populate with powerline glyphs
+let g:airline_theme='solarized'         " use solarized for airline
 " }}}
 " Colors {{{
 syntax enable                   " enable syntax processing
