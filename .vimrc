@@ -9,11 +9,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'lervag/vimtex'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
-let g:rainbow_active = 0                " make rainbow off by default
-let g:instant_markdown_slow = 1         " make vim-instant-markdown refresh on only certain events
-let g:instant_markdown_autostart = 0    " turn vim-instant-markdown autostart off
+let g:rainbow_active=0                  " make rainbow off by default
+let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on only certain events
+let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
 " }}}
 " Colors {{{
 syntax enable                   " enable syntax processing
@@ -25,10 +27,11 @@ set nocompatible                " be iMproved
 set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
+set laststatus=2                " leave nerdtree powerline status bar on
 filetype off
 " }}}
 " Spaces & Tabs {{{
-set tabstop=4                   "4 space tab
+set tabstop=4                   " 4 space tab
 set expandtab                   " use spaces for tabs
 set softtabstop=4               " 4 space tab
 set shiftwidth=4                " size of an "indent"
