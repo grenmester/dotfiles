@@ -48,6 +48,7 @@ set linebreak
 " }}}
 " Keybindings {{{
 map <C-n> :NERDTreeToggle<CR>
+map <C-p> :InstantMarkdownPreview<CR>
 " }}}
 " UI Layout {{{
 set number                      " show line numbers
