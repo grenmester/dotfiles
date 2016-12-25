@@ -1,6 +1,50 @@
 #!/usr/bin/env zsh
 
 ############################################################################
+#### Aliases
+
+alias vi="vim"
+alias g="git"
+alias ls="ls --classify --color"
+
+if (( $+commands[hub] )); then
+    alias git="hub"
+fi
+
+if (( $+commands[exa] )); then
+    alias l="exa --header --long --grid"
+    alias lt="exa --header --long --tree"
+    alias ltl="exa --header --long --tree --level"
+fi
+
+############################################################################
+#### Editor
+
+# Allows editting commands with vi operations
+set -o vi
+
+if (( $+commands[vim] )); then
+    export EDITOR="vim"
+    export USE_EDITOR=$EDITOR
+    export VISUAL=$EDITOR
+fi
+
+############################################################################
+#### Glob
+
+# Makes globs case-insensitive
+unsetopt case_glob
+
+# Makes globbing regexes case-insensitive
+unsetopt case_match
+
+# Allows globs to match dotfiles
+setopt glob_dots
+
+# Sorts numeric filenames numerically instead of lexicographically
+setopt numeric_glob_sort
+
+############################################################################
 #### History
 
 # History file location
@@ -31,30 +75,6 @@ setopt hist_verify
 setopt inc_append_history
 
 ############################################################################
-#### Glob
-
-# Makes globs case-insensitive
-unsetopt case_glob
-
-# Makes globbing regexes case-insensitive
-unsetopt case_match
-
-# Allows globs to match dotfiles
-setopt glob_dots
-
-# Sorts numeric filenames numerically instead of lexicographically
-setopt numeric_glob_sort
-
-############################################################################
-#### Editor
-
-if (( $+commands[vim] )); then
-    export EDITOR="vim"
-    export USE_EDITOR=$EDITOR
-    export VISUAL=$EDITOR
-fi
-
-############################################################################
 #### Miscellaneous
 
 # Uses commas in ls, du, df file size output
@@ -83,3 +103,11 @@ setopt noclobber
 
 # Prompts for confirmation after 'rm *'-ish commands to avoid accidentally wiping out directories
 setopt rm_star_wait
+
+############################################################################
+#### Prompt
+
+# Enable parameter expansion and other substitutions in $PROMPT
+setopt prompt_subst
+
+PROMPT="%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{245}$ %f%b"
