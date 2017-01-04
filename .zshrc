@@ -5,7 +5,6 @@
 
 alias vi="vim"
 alias g="git"
-alias ls="ls --classify --color"
 
 if (( $+commands[hub] )); then
     alias git="hub"
@@ -17,10 +16,19 @@ if (( $+commands[exa] )); then
     alias ltl="exa --header --long --tree --level"
 fi
 
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../.."
+alias -g ......="../../../../.."
+alias -g .......="../../../../../.."
+alias -g ........="../../../../../../.."
+alias -g .........="../../../../../../../.."
+alias -g ..........="../../../../../../../../.."
+
 ############################################################################
 #### Editor
 
-# Allows editting commands with vi operations
+# Allows editting commands in zle with vi operations
 set -o vi
 
 if (( $+commands[vim] )); then
@@ -28,6 +36,25 @@ if (( $+commands[vim] )); then
     export USE_EDITOR=$EDITOR
     export VISUAL=$EDITOR
 fi
+
+############################################################################
+#### Environmental Variables
+
+path=(
+    "/opt/perl512/bin"
+    "/usr/local/openresty/bin"
+    "/usr/local/openresty/nginx/sbin"
+    "$HOME/git/resty-cli/bin"
+    "/Library/TeX/texbin"
+    "/usr/local/bin"
+    "/usr/bin"
+    "/bin"
+    "/usr/sbin"
+    "/sbin"
+)
+export PATH
+
+export PGDATA="/usr/local/pgsql/data"
 
 ############################################################################
 #### Glob
@@ -74,6 +101,9 @@ setopt hist_verify
 # Incrementally append new history lines to history file rather than waiting until the shell exits
 setopt inc_append_history
 
+# Disables sharing history between different zsh sessions
+unsetopt share_history
+
 ############################################################################
 #### Miscellaneous
 
@@ -94,6 +124,9 @@ setopt autocd
 
 # Makes cd push the old directory onto the directory stack
 setopt autopushd
+
+# Swaps the meaning of '-' and '+' when used as arguments to cd so '-' means reading from the top of the stack when accessing an entry from the directory stack
+setopt pushdminus
 
 # Attempts to correct spelling of all arguments in a line
 setopt correct_all
