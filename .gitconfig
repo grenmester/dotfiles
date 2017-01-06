@@ -1,41 +1,52 @@
 [user]
 	name = Jacky Lee
-	email = dr.jackylee@yahoo.com
+    email = dr.jackylee@gmail.com
+
 [alias]
     pl = pull
     ci = commit
     ps = push
     cl = clone
-    hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+    hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
+    rlog = reflog --pretty=format:'%C(red)%h%C(reset) %C(ul)%gD%C(reset): %gs%C(yellow)%d%C(green) (%ar)%C(blue) [%an]%C(reset)'
+
 [color]
     ui = true
     status = auto
+
 [color "branch"]
     current = yellow bold
     local = yellow
     remote = green
+
 [color "diff"]
     meta = yellow bold
     frag = blue bold
     old = red bold
     new = green bold
-	whitespace = black reverse
+    whitespace = black reverse
+
 [color "status"]
 	header = normal
 	added = green
     changed = yellow
     untracked = red
-	branch = blue bold
+    branch = blue bold
+
 [color "grep"]
 	filename = blue
 	linenumber = yellow
 	match = green black bold
-	separator = normal
+    separator = normal
+
 [grep]
-	linenumber = true
+    linenumber = true
+
 [core]
     editor = /usr/local/bin/vim
+
 [push]
     default = simple
+
 [branch "master"]
     remote = origin
