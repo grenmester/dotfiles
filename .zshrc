@@ -6,6 +6,9 @@
 alias vi="vim"
 alias g="git"
 
+# Shows the last 10 visited directories
+alias ds="dirs -v | head -10"
+
 if (( $+commands[hub] )); then
     alias git="hub"
 fi
@@ -125,14 +128,17 @@ setopt autocd
 # Makes cd push the old directory onto the directory stack
 setopt autopushd
 
-# Swaps the meaning of '-' and '+' when used as arguments to cd so '-' means reading from the top of the stack when accessing an entry from the directory stack
-setopt pushdminus
-
 # Attempts to correct spelling of all arguments in a line
 setopt correct_all
 
+# Allows comments in the interactive shell
+setopt interactive_comments
+
 # Doesn’t overwrite existing files with '>' but uses '>!' instead
 setopt noclobber
+
+# Swaps the meaning of '-' and '+' when used as arguments to cd so '-' means reading from the top of the stack when accessing an entry from the directory stack
+setopt pushdminus
 
 # Prompts for confirmation after 'rm *'-ish commands to avoid accidentally wiping out directories
 setopt rm_star_wait
@@ -143,4 +149,12 @@ setopt rm_star_wait
 # Enable parameter expansion and other substitutions in $PROMPT
 setopt prompt_subst
 
-PROMPT="%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{245}$ %f%b"
+function git_prompt_info() {
+        local ref
+        ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+            ref=$(command git rev-parse --short HEAD 2> /dev/null) || \
+            return 0
+        echo "(${ref#refs/heads/})"
+}
+
+PROMPT="%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{61}$(git_prompt_info) %F{245}$ %f%b"
