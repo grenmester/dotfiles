@@ -8,6 +8,7 @@
     ps = push
     cl = clone
     hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
+    stat = log --graph --stat --pretty=format:'%C(red)%h%C(reset) %C(ul)%s%C(reset)%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)%n' --abbrev-commit --date=relative
     rlog = reflog --pretty=format:'%C(red)%h%C(reset) %C(ul)%gD%C(reset): %gs%C(yellow)%d%C(green) (%ar)%C(blue) [%an]%C(reset)'
 
 [color]
