@@ -62,6 +62,14 @@ set cursorline                  " highlight current line
 set wildmenu                    " visual autocomplete for command menu
 set showmatch                   " higlight matching parenthesis
 " }}}
+" Panes {{{
+set splitright                  " use a more natural splitting
+set splitbelow
+nnoremap <C-J> <C-W><C-J>       " save keystrokes
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" }}}
 " Searching {{{
 set ignorecase                  " ignore case when searching
 set incsearch                   " search as characters are entered
