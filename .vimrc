@@ -26,6 +26,7 @@ let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on o
 let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
 let g:airline_powerline_fonts=1         " automatically populate with powerline glyphs
 let g:airline_theme='solarized'         " use solarized for airline
+let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
 " }}}
 " Colors {{{
 syntax enable                   " enable syntax processing
@@ -37,8 +38,14 @@ set nocompatible                " be iMproved
 set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
-set laststatus=2                " leave nerdtree powerline status bar on
+set laststatus=2                " leave airline bar on
 filetype off
+if has("clipboard")
+   set clipboard=unnamed       " allow for copy and paste into macOS clipboard
+endif
+if has("mouse")
+    set mouse=a
+endif
 " }}}
 " Spaces & Tabs {{{
 set tabstop=4                   " 4 space tab
@@ -54,6 +61,7 @@ set linebreak
 " Keybindings {{{
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :InstantMarkdownPreview<CR>
+nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
 " }}}
 " UI Layout {{{
 set number                      " show line numbers
