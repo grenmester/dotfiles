@@ -14,6 +14,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jceb/vim-orgmode'
+Plugin 'wlangstroth/vim-racket'
+Plugin 'vim-syntastic/syntastic'
 call vundle#end()
 
 let g:rainbow_active=0                  " make rainbow off by default
