@@ -78,10 +78,6 @@ augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
     autocmd BufWritePre * StripWhitespace
-    autocmd FileType java setlocal noexpandtab
-    autocmd FileType java setlocal list
-    autocmd FileType java setlocal listchars=tab:+\ ,eol:-
-    autocmd FileType java setlocal formatprg=par\ -w80\ -T4
     autocmd FileType php setlocal expandtab
     autocmd FileType php setlocal list
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
@@ -91,13 +87,10 @@ augroup configgroup
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
     autocmd FileType python setlocal commentstring=#\ %s
-    autocmd BufEnter *.cls setlocal filetype=java
-    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
     autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.sh setlocal tabstop=2
-    autocmd BufEnter *.sh setlocal shiftwidth=2
-    autocmd BufEnter *.sh setlocal softtabstop=2
-    autocmd BufNewFile,BufRead *.tt setf tt2
+    autocmd BufNewFile,BufRead *.tt setfiletype tt2
+    autocmd FileType tt setlocal nofixeol
+    autocmd BufNewFile,BufRead *.cls setfiletype tex
 augroup END
 " }}}
 " vim:foldmethod=marker:foldlevel=0
