@@ -14,7 +14,8 @@ if (( $+commands[hub] )); then
 fi
 
 if (( $+commands[exa] )); then
-    alias l="exa --header --long --grid"
+    alias l="exa --header --long"
+    alias lg="exa --header --long --grid"
     alias lt="exa --header --long --tree"
     alias ltl="exa --header --long --tree --level"
 fi
