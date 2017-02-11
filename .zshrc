@@ -149,12 +149,33 @@ setopt rm_star_wait
 # Enable parameter expansion and other substitutions in $PROMPT
 setopt prompt_subst
 
-function git_prompt_info() {
-        local ref
-        ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-            ref=$(command git rev-parse --short HEAD 2> /dev/null) || \
-            return 0
-        echo "(${ref#refs/heads/})"
+# function git_prompt_info() {
+#         local ref
+#         ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+#             ref=$(command git rev-parse --short HEAD 2> /dev/null) || \
+#             return 0
+#         echo "(${ref#refs/heads/})"
+# }
+
+GIT_THEME_PROMPT_DIRTY='✗'
+GIT_THEME_PROMPT_UNPUSHED='+'
+GIT_THEME_PROMPT_CLEAN='✓'
+
+function parse_git_dirty() {
+   if [[ -n $(git status -s 2> /dev/null |grep -v ^\# | grep -v "working directory clean" ) ]]; then
+       echo -ne "%F{160}${GIT_THEME_PROMPT_DIRTY}"
+   else
+       echo -ne "%F{64}${GIT_THEME_PROMPT_CLEAN}"
+   fi
+   GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD 2> /dev/null)
+   GIT_ORIGIN_UNPUSHED=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline 2>&1 | awk '{ print $1 }')
+   if [[ $GIT_ORIGIN_UNPUSHED != "" ]]; then
+       echo -e "%F{136}${GIT_THEME_PROMPT_UNPUSHED}"
+   fi
 }
 
-PROMPT="%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{61}$(git_prompt_info) %F{245}$ %f%b"
+function parse_git_branch() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1) $(parse_git_dirty) /"
+}
+
+PROMPT='%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{61}$(parse_git_branch)%F{245}$ %f%b'
