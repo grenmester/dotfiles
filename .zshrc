@@ -14,10 +14,26 @@ if (( $+commands[hub] )); then
 fi
 
 if (( $+commands[exa] )); then
-    alias l="exa --header --long"
-    alias lg="exa --header --long --grid"
-    alias lt="exa --header --long --tree"
-    alias ltl="exa --header --long --tree --level"
+    alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+    alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
+    alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
+    function lti() {
+        ignore="$1"
+        for i in "${@:2}"; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --tree --all --ignore-glob ".git|$ignore" --long --git --header
+    }
+    function ltl() {
+        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
+    }
+    function ltli() {
+        ignore="$2"
+        for i in "${@:3}"; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git|$ignore" --long --git --header
+    }
 fi
 
 alias -g ...="../.."
