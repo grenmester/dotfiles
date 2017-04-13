@@ -1,4 +1,6 @@
-" Plugins {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Plugins
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -22,19 +24,23 @@ call vundle#end()
 let g:rainbow_active=0                  " make rainbow off by default
 let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on only certain events
 let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
-let g:airline_powerline_fonts=1        " automatically populate with powerline glyphs
+let g:airline_powerline_fonts=1         " automatically populate with powerline glyphs
 let g:airline_theme='solarized'         " use solarized for airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
 let g:syntastic_enable_racket_racket_checker=1
-" }}}
-" Colors {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Colors
+
 syntax enable                   " enable syntax processing
 set background=dark
 colorscheme solarized
-" }}}
-" Misc {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Misc
+
 set nocompatible                " be iMproved
 set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
@@ -47,8 +53,10 @@ endif
 if has("mouse")
     set mouse=a
 endif
-" }}}
-" Spaces & Tabs {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Space and Tabs
+
 set tabstop=4                   " 4 space tab
 set expandtab                   " use spaces for tabs
 set softtabstop=4               " 4 space tab
@@ -58,40 +66,44 @@ filetype indent on              " load filetype-specific indent files
 filetype plugin on              " use the file type plugins
 set autoindent
 set linebreak
-" }}}
-" Keybindings {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Keybindings
+
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :InstantMarkdownPreview<CR>
 nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
-" }}}
-" UI Layout {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" UI Layout
+
 set relativenumber              " set relative line numbers
 set number                      " show line numbers
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
 set wildmenu                    " visual autocomplete for command menu
 set showmatch                   " higlight matching parenthesis
-" }}}
-" Panes {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Panes
+
 set splitright                  " use a more natural splitting
 set splitbelow
 nnoremap <C-J> <C-W><C-J>       " save keystrokes
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" }}}
-" Searching {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Searching
+
 set ignorecase                  " ignore case when searching
 set incsearch                   " search as characters are entered
 set hlsearch                    " highlight all matches
-" }}}
-" Folding {{{
-set foldenable                  " don't fold files by default on open
-set foldmethod=indent           " fold based on indent level
-set foldnestmax=10              " max 10 depth
-set foldlevelstart=10           " start with fold level of 10
-" }}}
-" AutoGroups {{{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" AutoGroups
+
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
@@ -110,5 +122,3 @@ augroup configgroup
     autocmd FileType tt setlocal nofixeol
     autocmd BufNewFile,BufRead *.cls setfiletype tex
 augroup END
-" }}}
-" vim:foldmethod=marker:foldlevel=0
