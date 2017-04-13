@@ -3,30 +3,31 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-perl/vim-perl'
-Plugin 'luochen1990/rainbow'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'lervag/vimtex'
-Plugin 'rust-lang/rust.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'jceb/vim-orgmode'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'sjl/vitality.vim'
 call vundle#end()
 
 let g:rainbow_active=0                  " make rainbow off by default
 let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on only certain events
 let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
-let g:airline_powerline_fonts=1         " automatically populate with powerline glyphs
+let g:airline_powerline_fonts=1        " automatically populate with powerline glyphs
 let g:airline_theme='solarized'         " use solarized for airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
+let g:syntastic_enable_racket_racket_checker=1
 " }}}
 " Colors {{{
 syntax enable                   " enable syntax processing
@@ -64,6 +65,7 @@ map <C-p> :InstantMarkdownPreview<CR>
 nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
 " }}}
 " UI Layout {{{
+set relativenumber              " set relative line numbers
 set number                      " show line numbers
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
