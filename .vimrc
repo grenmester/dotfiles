@@ -29,6 +29,13 @@ let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
 let g:syntastic_enable_racket_racket_checker=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Cursor Shape
+
+if has("nvim")
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
 
 set background=dark
@@ -45,11 +52,16 @@ set backspace=indent,eol,start
 set laststatus=2                " leave airline bar on
 
 if has("clipboard")
-    set clipboard=unnamed        " allow for copy and paste into macOS clipboard
+    set clipboard=unnamed       " allow for copy and paste into macOS clipboard
 endif
 if has("mouse")
     set mouse=a
 endif
+
+" when a prefix or leader key is pressed, wait indefinitely for further input,
+" instead of timing out after one second
+set notimeout
+set ttimeout
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Space and Tabs
