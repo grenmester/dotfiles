@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Plugins
 
 call plug#begin('~/.vim/plugged')
@@ -28,15 +28,14 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
 let g:syntastic_enable_racket_racket_checker=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
 
-syntax enable                   " enable syntax processing
 set background=dark
 colorscheme solarized
 highlight ExtraWhitespace ctermbg = grey guibg = #A8A8A8
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
 
 set nocompatible                " be iMproved
@@ -44,15 +43,15 @@ set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
 set laststatus=2                " leave airline bar on
-filetype off
+
 if has("clipboard")
-   set clipboard=unnamed       " allow for copy and paste into macOS clipboard
+    set clipboard=unnamed        " allow for copy and paste into macOS clipboard
 endif
 if has("mouse")
     set mouse=a
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Space and Tabs
 
 set tabstop=4                   " 4 space tab
@@ -62,26 +61,24 @@ set shiftwidth=4                " size of an "indent"
 set modelines=1
 set autoindent
 set linebreak
-filetype plugin indent on       " load filetype-specific indent files and use the filetype plugins
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Keybindings
 
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :InstantMarkdownPreview<CR>
 nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" UI Layout
 
 set relativenumber              " set relative line numbers
-set number                      " show line numbers
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
 set wildmenu                    " visual autocomplete for command menu
 set showmatch                   " higlight matching parenthesis
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Panes
 
 set splitright                  " use a more natural splitting
@@ -91,15 +88,15 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Searching
 
 set ignorecase                  " ignore case when searching
 set incsearch                   " search as characters are entered
 set hlsearch                    " highlight all matches
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""" AutoGroups
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Autocommands
 
 augroup configgroup
     autocmd!
