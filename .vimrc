@@ -1,27 +1,24 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Plugins
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'lervag/vimtex'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'sjl/vitality.vim'
-call vundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
+Plug 'airblade/vim-gitgutter'
+Plug 'wlangstroth/vim-racket', {'for': 'racket'}
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'vim-syntastic/syntastic'
+Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-fugitive'
+Plug 'sjl/vitality.vim'
+call plug#end()
 
-let g:rainbow_active=0                  " make rainbow off by default
+let g:plug_window='vertical topleft 75new'
 let g:instant_markdown_slow=1           " make vim-instant-markdown refresh on only certain events
 let g:instant_markdown_autostart=0      " turn vim-instant-markdown autostart off
 let g:airline_powerline_fonts=1         " automatically populate with powerline glyphs
@@ -62,10 +59,9 @@ set expandtab                   " use spaces for tabs
 set softtabstop=4               " 4 space tab
 set shiftwidth=4                " size of an "indent"
 set modelines=1
-filetype indent on              " load filetype-specific indent files
-filetype plugin on              " use the file type plugins
 set autoindent
 set linebreak
+filetype plugin indent on       " load filetype-specific indent files and use the filetype plugins
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Keybindings
