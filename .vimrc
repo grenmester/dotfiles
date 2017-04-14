@@ -34,6 +34,7 @@ let g:syntastic_enable_racket_racket_checker=1
 syntax enable                   " enable syntax processing
 set background=dark
 colorscheme solarized
+highlight ExtraWhitespace ctermbg = grey guibg = #A8A8A8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
@@ -103,7 +104,7 @@ set hlsearch                    " highlight all matches
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
-    autocmd BufWritePre * StripWhitespace
+    autocmd BufEnter * EnableStripWhitespaceOnSave
     autocmd FileType php setlocal expandtab
     autocmd FileType php setlocal list
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
