@@ -191,14 +191,6 @@ setopt rm_star_wait
 # Enable parameter expansion and other substitutions in $PROMPT
 setopt prompt_subst
 
-# function git_prompt_info() {
-#         local ref
-#         ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-#             ref=$(command git rev-parse --short HEAD 2> /dev/null) || \
-#             return 0
-#         echo "(${ref#refs/heads/})"
-# }
-
 GIT_THEME_PROMPT_DIRTY='✗'
 GIT_THEME_PROMPT_UNPUSHED='+'
 GIT_THEME_PROMPT_CLEAN='✓'
@@ -220,7 +212,12 @@ function parse_git_branch() {
    git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1) $(parse_git_dirty) /"
 }
 
-PROMPT='%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{61}$(parse_git_branch)%F{245}$ %f%b'
+PROMPT='%B%F{33}%~ %F{61}$(parse_git_branch)%F{245}$ %f%b'
+if (( $+commands[battery] )); then
+    RPROMPT='%B%F{125}%n%F{245}@%F{166}%m $(battery -zp)%f%b'
+else
+    RPROMPT='%B%F{125}%n%F{245}@%F{166}%m%f%b'
+fi
 
 ############################################################################
 #### Zplug
