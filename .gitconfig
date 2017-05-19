@@ -18,7 +18,7 @@
     remote = origin
 
 [color]
-    ui = true
+    ui = auto
     status = auto
 
 [color "branch"]
@@ -47,7 +47,8 @@
     branch = blue bold
 
 [core]
-    editor = /usr/local/bin/vim
+    editor = /usr/local/bin/nvim
+    excludesfile = ~/.gitignore
 
 [grep]
     linenumber = true
