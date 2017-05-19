@@ -71,11 +71,16 @@ alias -g ..........="../../../../../../../../.."
 # Allows editting commands in zle with vi operations
 set -o vi
 
-if (( $+commands[vim] )); then
-    export EDITOR="vim"
-    export USE_EDITOR=$EDITOR
-    export VISUAL=$EDITOR
+# Sets default editor
+if (( $+commands[nvim] )); then
+    export EDITOR="nvim"
+else
+    if (( $+commands[vim] )); then
+        export EDITOR="vim"
+    fi
 fi
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 
 ############################################################################
 #### Environmental Variables
