@@ -196,3 +196,20 @@ function parse_git_branch() {
 }
 
 PROMPT='%B%F{125}%n%F{245}@%F{166}%m %F{33}%~ %F{61}$(parse_git_branch)%F{245}$ %f%b'
+
+############################################################################
+#### Zplug
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+    source $ZPLUG_HOME/init.zsh
+
+    zplug "zplug/zplug", hook-build:"zplug --self-manage"
+
+    if ! zplug check; then
+        zplug install
+    fi
+
+    zplug load
+fi
