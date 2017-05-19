@@ -1,9 +1,25 @@
 [alias]
-    pl = pull
-    cm = commit
-    ps = push
+    a = add
+    aa = add --all
+    ap = add --patch
+    b = branch
+    c = commit
+    ca = commit --amend
+    cm = commit --message
     cl = clone
-    st = status
+    co = checkout
+    d = diff
+    dc = diff --cached
+    pl = pull
+    ps = push
+    r = reset
+    rh = reset --hard
+    rb = rebase
+    rbc = rebase --continue
+    rbi = rebase --interactive
+    s = status
+    st = stash
+    stp = stash pop
 
     ;; prettier git log to quickly show commits
     hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
