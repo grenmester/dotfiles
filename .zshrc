@@ -3,20 +3,38 @@
 ############################################################################
 #### Aliases
 
-alias vi="vim"
-alias g="git"
+if (( $+commands[nvim] )); then
+    alias v="nvim"
+elif (( $+commands[vim] )); then
+    alias v="vim"
+elif (( $+commands[vi] )); then
+    alias v="vi"
+fi
 
 # Shows the last 10 visited directories
 alias ds="dirs -v | head -10"
 
 if (( $+commands[hub] )); then
-    alias git="hub"
+    alias g="hub"
+elif (( $+commands[git] )); then
+    alias g="git"
 fi
 
 if (( $+commands[exa] )); then
     alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+
+    function li() {
+        ignore="$1"
+        for i in "${@:2}"; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --all --ignore-glob ".git|$ignore" --long --git --header
+    }
+
     alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
+
     alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
+
     function lti() {
         ignore="$1"
         for i in "${@:2}"; do
@@ -24,9 +42,11 @@ if (( $+commands[exa] )); then
         done
         exa --color=always --color-scale --tree --all --ignore-glob ".git|$ignore" --long --git --header
     }
+
     function ltl() {
         exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
     }
+
     function ltli() {
         ignore="$2"
         for i in "${@:3}"; do
