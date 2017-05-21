@@ -24,23 +24,31 @@ if (( $+commands[exa] )); then
     alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
 
     function li() {
-        ignore="$1"
-        for i in "${@:2}"; do
+        local ignore=""
+        for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --all --ignore-glob ".git|$ignore" --long --git --header
+        exa --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
     }
 
     alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
 
+    function lgi() {
+        local ignore=""
+        for i in ${1+"$@"}; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
+    }
+
     alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
 
     function lti() {
-        ignore="$1"
-        for i in "${@:2}"; do
+        local ignore=""
+        for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --tree --all --ignore-glob ".git|$ignore" --long --git --header
+        exa --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
     }
 
     function ltl() {
@@ -48,11 +56,11 @@ if (( $+commands[exa] )); then
     }
 
     function ltli() {
-        ignore="$2"
-        for i in "${@:3}"; do
+        local ignore=""
+        for i in ${2+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git|$ignore" --long --git --header
+        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
     }
 fi
 
