@@ -1,6 +1,23 @@
 #!/usr/bin/env zsh
 
 ############################################################################
+#### Zplug
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+    source $ZPLUG_HOME/init.zsh
+
+    zplug "zplug/zplug", hook-build:"zplug --self-manage"
+
+    if ! zplug check; then
+        zplug install
+    fi
+
+    zplug load
+fi
+
+############################################################################
 #### Aliases
 
 if (( $+commands[nvim] )); then
@@ -240,21 +257,4 @@ if (( $+commands[battery] )); then
     RPROMPT='%B%F{125}%n%F{245}@%F{166}%m $(battery -zp)%f%b'
 else
     RPROMPT='%B%F{125}%n%F{245}@%F{166}%m%f%b'
-fi
-
-############################################################################
-#### Zplug
-
-export ZPLUG_HOME=/usr/local/opt/zplug
-
-if [[ -f $ZPLUG_HOME/init.zsh ]]; then
-    source $ZPLUG_HOME/init.zsh
-
-    zplug "zplug/zplug", hook-build:"zplug --self-manage"
-
-    if ! zplug check; then
-        zplug install
-    fi
-
-    zplug load
 fi
