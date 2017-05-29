@@ -3,10 +3,76 @@
 ############################################################################
 #### Aliases
 
-set -o vi
-alias vi=vim
-alias g=git
-alias ls="ls -F --color"
+if command -v nvim &>/dev/null; then
+    alias v="nvim"
+elif command -v vim &>/dev/null; then
+    alias v="vim"
+elif command -v vi &>/dev/null; then
+    alias v="vi"
+fi
+
+# Shows the last 10 visited directories
+alias ds="dirs -v | head -10"
+
+if command -v hub &>/dev/null; then
+    alias g="hub"
+elif command -v git &>/dev/null; then
+    alias g="git"
+fi
+
+if command -v exa &>/dev/null; then
+    alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+
+    function li() {
+        local ignore=""
+        for i in ${1+"$@"}; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
+    }
+
+    alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
+
+    function lgi() {
+        local ignore=""
+        for i in ${1+"$@"}; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
+    }
+
+    alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
+
+    function lti() {
+        local ignore=""
+        for i in ${1+"$@"}; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
+    }
+
+    function ltl() {
+        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
+    }
+
+    function ltli() {
+        local ignore=""
+        for i in ${2+"$@"}; do
+            ignore+="|$i"
+        done
+        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
+    }
+fi
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
+alias .........="cd ../../../../../../../.."
+alias ..........="cd ../../../../../../../../.."
 
 ############################################################################
 #### Environmental Variables
