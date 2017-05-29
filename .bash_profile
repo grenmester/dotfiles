@@ -77,12 +77,8 @@ alias ..........="cd ../../../../../../../../.."
 ############################################################################
 #### Environmental Variables
 
-#Environmental Variables
-export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/share/man:/usr/local/share/man
+export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PGDATA=/usr/local/pgsql/data
-export TERM=xterm-256color
-export CLICOLOR=1
 
 ############################################################################
 #### Prompt
