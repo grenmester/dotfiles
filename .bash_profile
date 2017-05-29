@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-#Aliases
+############################################################################
+#### Aliases
+
 set -o vi
 alias vi=vim
 alias g=git
 alias ls="ls -F --color"
+
+############################################################################
+#### Environmental Variables
 
 #Environmental Variables
 export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -13,8 +18,10 @@ export PGDATA=/usr/local/pgsql/data
 export TERM=xterm-256color
 export CLICOLOR=1
 
-#Terminal Prompt
-#solarized colors
+############################################################################
+#### Prompt
+
+# Solarized Colors
 BASE03=$(tput setaf 234)
 BASE02=$(tput setaf 235)
 BASE01=$(tput setaf 240)
