@@ -77,7 +77,7 @@ alias ..........="cd ../../../../../../../../.."
 ############################################################################
 #### Editor
 
-# Allows editting commands in zle with vi operations
+# Allows editting commands in line editor with vi operations
 set -o vi
 
 # Sets default editor

@@ -24,8 +24,6 @@ if (( $+commands[nvim] )); then
     alias v="nvim"
 elif (( $+commands[vim] )); then
     alias v="vim"
-elif (( $+commands[vi] )); then
-    alias v="vi"
 fi
 
 # Shows the last 10 visited directories
@@ -99,10 +97,8 @@ set -o vi
 # Sets default editor
 if (( $+commands[nvim] )); then
     export EDITOR="nvim"
-else
-    if (( $+commands[vim] )); then
-        export EDITOR="vim"
-    fi
+elif (( $+commands[vim] )); then
+    export EDITOR="vim"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -177,7 +173,7 @@ unsetopt share_history
 ############################################################################
 #### Man
 
-man() {
+function man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;32m") \
         LESS_TERMCAP_md=$(printf "\e[1;34m") \
