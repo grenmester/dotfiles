@@ -75,6 +75,21 @@ alias .........="cd ../../../../../../../.."
 alias ..........="cd ../../../../../../../../.."
 
 ############################################################################
+#### Editor
+
+# Allows editting commands in zle with vi operations
+set -o vi
+
+# Sets default editor
+if command -v nvim &>/dev/null; then
+    export EDITOR="nvim"
+elif command -v vim &>/dev/null; then
+    export EDITOR="vim"
+fi
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
+############################################################################
 #### Environmental Variables
 
 export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
