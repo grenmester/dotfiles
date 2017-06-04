@@ -36,38 +36,38 @@ elif (( $+commands[git] )); then
 fi
 
 if (( $+commands[exa] )); then
-    alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+    alias l='exa --classify --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
 
     function li() {
         local ignore=""
         for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
     }
 
-    alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
+    alias lg='exa --classify --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
 
     function lgi() {
         local ignore=""
         for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
     }
 
-    alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
+    alias lt='exa --classify --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
 
     function lti() {
         local ignore=""
         for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
     }
 
     function ltl() {
-        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
+        exa --classify --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
     }
 
     function ltli() {
@@ -75,7 +75,7 @@ if (( $+commands[exa] )); then
         for i in ${2+"$@"}; do
             ignore+="|$i"
         done
-        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
     }
 fi
 
