@@ -24,6 +24,8 @@ if (( $+commands[nvim] )); then
     alias v="nvim"
 elif (( $+commands[vim] )); then
     alias v="vim"
+elif (( $+commands[vi] )); then
+    alias v="vi"
 fi
 
 # Shows the last 10 visited directories
@@ -77,6 +79,8 @@ if (( $+commands[exa] )); then
         done
         exa --classify --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
     }
+else
+    alias l='ls -FGA'
 fi
 
 alias -g ...="../.."
