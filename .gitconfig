@@ -6,12 +6,15 @@
     c = commit
     ca = commit --amend
     cm = commit --message
+    ce = clean
+    cef = clean --force
     cl = clone
     co = checkout
     d = diff
     dc = diff --cached
     pl = pull
     ps = push
+    psuom = push --set-upstream origin master
     r = reset
     rh = reset --hard
     rb = rebase
