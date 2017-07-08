@@ -14,6 +14,7 @@
     dc = diff --cached
     pl = pull
     ps = push
+    psf = push --force
     psuom = push --set-upstream origin master
     r = reset
     rh = reset --hard
