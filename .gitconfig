@@ -21,6 +21,7 @@
     rb = rebase
     rbc = rebase --continue
     rbi = rebase --interactive
+    rmc = rm --cached
     s = status
     st = stash
     stp = stash pop
