@@ -58,18 +58,18 @@ if (( $+commands[exa] )); then
         exa --classify --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
     }
 
-    alias lt='exa --classify --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
+    alias lt='exa --classify --color=always --color-scale --tree --ignore-glob ".git" --long --git --header'
 
     function lti() {
         local ignore=""
         for i in ${1+"$@"}; do
             ignore+="|$i"
         done
-        exa --classify --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --tree --ignore-glob ".git$ignore" --long --git --header
     }
 
     function ltl() {
-        exa --classify --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
+        exa --classify --color=always --color-scale --tree --level=$1 --ignore-glob ".git" --long --git --header
     }
 
     function ltli() {
@@ -77,7 +77,7 @@ if (( $+commands[exa] )); then
         for i in ${2+"$@"}; do
             ignore+="|$i"
         done
-        exa --classify --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
+        exa --classify --color=always --color-scale --tree --level=$1 --ignore-glob ".git$ignore" --long --git --header
     }
 else
     alias l='ls -FGA'
