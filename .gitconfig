@@ -68,7 +68,7 @@
     branch = blue bold
 
 [core]
-    editor = /usr/local/bin/nvim
+    editor = /usr/local/bin/emacs
     excludesfile = ~/.gitignore
 
 [grep]
@@ -79,4 +79,4 @@
 
 [user]
 	name = Jacky Lee
-    email = dr.jackylee@gmail.com
+	email = dr.jackylee@gmail.com
