@@ -7,15 +7,25 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
-Plug 'wlangstroth/vim-racket', {'for': 'racket'}
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
-Plug 'sjl/vitality.vim'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
+Plug 'keith/tmux.vim', {'for': 'tmux'}
+Plug 'majutsushi/tagbar'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'mbbill/undotree'
+if has("nvim")
+    Plug 'floobits/floobits-neovim'
+    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+endif
 call plug#end()
 
 let g:plug_window='vertical topleft 75new'
@@ -25,8 +35,11 @@ let g:airline_powerline_fonts=1         " automatically populate with powerline 
 let g:airline_theme='solarized'         " use solarized for airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:vimtex_latexmk_options='-xelatex -synctex=1 -file-line-error'
+let g:vimtex_latexmk_options='-pdfxe -file-line-error'
 let g:syntastic_enable_racket_racket_checker=1
+let g:deoplete#enable_at_startup=1
+let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+let g:tex_flavor = "latex"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Cursor Shape
@@ -114,6 +127,7 @@ augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
     autocmd BufEnter * EnableStripWhitespaceOnSave
+    autocmd VimLeave tex VimtexClean
     autocmd FileType php setlocal expandtab
     autocmd FileType php setlocal list
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
