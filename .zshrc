@@ -28,6 +28,10 @@ elif (( $+commands[vi] )); then
     alias v="vi"
 fi
 
+if (( $+commands[emacs] )); then
+    alias e="emacs"
+fi
+
 # Shows the last 10 visited directories
 alias ds="dirs -v | head -10"
 
@@ -95,14 +99,12 @@ alias -g ..........="../../../../../../../../.."
 ############################################################################
 #### Editor
 
-# Allows editting commands in zle with vi operations
-set -o vi
+# Allows editting commands in zle with emacs operations
+set -o emacs
 
 # Sets default editor
-if (( $+commands[nvim] )); then
-    export EDITOR="nvim"
-elif (( $+commands[vim] )); then
-    export EDITOR="vim"
+if (( $+commands[emacs] )); then
+    export EDITOR="emacs"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
