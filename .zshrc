@@ -150,7 +150,7 @@ setopt numeric_glob_sort
 export HISTFILE=~/.zsh_history
 
 # Removes the specified commands from the history
-export HISTIGNORE="ls:[bf]g:exit:reset:clear:htop"
+export HISTIGNORE="l:ls:[bf]g:exit:reset:clear:htop"
 
 # Number of lines saved in a session
 export HISTSIZE=25000
@@ -255,8 +255,4 @@ function parse_git_branch() {
 }
 
 PROMPT='%B%F{33}%~ %F{61}$(parse_git_branch)%F{245}$ %f%b'
-if (( $+commands[battery] )); then
-    RPROMPT='%B%F{125}%n%F{245}@%F{166}%m $(battery -zp)%f%b'
-else
-    RPROMPT='%B%F{125}%n%F{245}@%F{166}%m%f%b'
-fi
+RPROMPT='%B%F{125}%n%F{245}@%F{166}%m%f%b'
