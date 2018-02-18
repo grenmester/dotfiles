@@ -62,6 +62,7 @@ set nocompatible                " be iMproved
 set lazyredraw                  " don't redraw if action is not typed
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
+set hidden                      " switch buffer without having to save current buffer
 set laststatus=2                " leave airline bar on
 
 if has("clipboard")
@@ -90,21 +91,25 @@ set linebreak
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Keybindings
 
+let mapleader=" "
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :InstantMarkdownPreview<CR>
+map <C-t> :UndotreeToggle<CR>
 nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
+nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " shortcut to insert a newline in normal mode
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" UI Layout
 
 set relativenumber              " set relative line numbers
+set number                      " display absolute line number on current line
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
 set wildmenu                    " visual autocomplete for command menu
 set showmatch                   " higlight matching parenthesis
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""" Panes
+"""" Windows
 
 set splitright                  " use a more natural splitting
 set splitbelow
@@ -137,8 +142,16 @@ augroup configgroup
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
     autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType html setlocal tabstop=2
+    autocmd FileType html setlocal shiftwidth=2
+    autocmd FileType html setlocal softtabstop=2
+    autocmd FileType javascript setlocal tabstop=2
+    autocmd FileType javascript setlocal shiftwidth=2
+    autocmd FileType javascript setlocal softtabstop=2
     autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufNewFile,BufRead *.cls setfiletype tex
+    "autocmd BufReadPost *.cls setfiletype tex
     autocmd BufNewFile,BufRead *.tt setfiletype tt2
     autocmd FileType tt setlocal nofixeol
-    autocmd BufNewFile,BufRead *.cls setfiletype tex
+    autocmd filetype crontab setlocal nobackup nowritebackup
 augroup END
