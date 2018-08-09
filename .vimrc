@@ -80,10 +80,10 @@ set ttimeout
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Space and Tabs
 
-set tabstop=4                   " 4 space tab
+set tabstop=2                   " 2 space tab
 set expandtab                   " use spaces for tabs
-set softtabstop=4               " 4 space tab
-set shiftwidth=4                " size of an "indent"
+set softtabstop=2               " 2 space tab
+set shiftwidth=2                " size of an "indent"
 set modelines=1
 set autoindent
 set linebreak
@@ -137,17 +137,8 @@ augroup configgroup
     autocmd FileType php setlocal list
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
     autocmd FileType php setlocal formatprg=par\ -w80\ -T4
-    autocmd FileType ruby setlocal tabstop=2
-    autocmd FileType ruby setlocal shiftwidth=2
-    autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
     autocmd FileType python setlocal commentstring=#\ %s
-    autocmd FileType html setlocal tabstop=2
-    autocmd FileType html setlocal shiftwidth=2
-    autocmd FileType html setlocal softtabstop=2
-    autocmd FileType javascript setlocal tabstop=2
-    autocmd FileType javascript setlocal shiftwidth=2
-    autocmd FileType javascript setlocal softtabstop=2
     autocmd BufEnter Makefile setlocal noexpandtab
     autocmd BufNewFile,BufRead *.cls setfiletype tex
     "autocmd BufReadPost *.cls setfiletype tex
