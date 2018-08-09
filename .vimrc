@@ -7,7 +7,6 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'vim-syntastic/syntastic'
@@ -18,10 +17,13 @@ Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
 Plug 'majutsushi/tagbar'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
 Plug 'mbbill/undotree'
+Plug 'myusuf3/numbers.vim'
+Plug 'osyo-manga/vim-over'
+Plug 'junegunn/vim-peekaboo'
+Plug 'kshenoy/vim-signature'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-surround'
 if has("nvim")
     Plug 'floobits/floobits-neovim'
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
