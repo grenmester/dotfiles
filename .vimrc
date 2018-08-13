@@ -10,7 +10,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'vim-syntastic/syntastic'
-Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
