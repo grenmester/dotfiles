@@ -144,7 +144,4 @@ augroup configgroup
     autocmd BufEnter Makefile setlocal noexpandtab
     autocmd BufNewFile,BufRead *.cls setfiletype tex
     "autocmd BufReadPost *.cls setfiletype tex
-    autocmd BufNewFile,BufRead *.tt setfiletype tt2
-    autocmd FileType tt setlocal nofixeol
-    autocmd filetype crontab setlocal nobackup nowritebackup
 augroup END
