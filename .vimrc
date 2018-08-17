@@ -60,18 +60,18 @@ highlight ExtraWhitespace ctermbg = grey guibg = #A8A8A8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
 
-set nocompatible                " be iMproved
-set lazyredraw                  " don't redraw if action is not typed
-set ttyfast                     " faster redraw
 set backspace=indent,eol,start
 set hidden                      " switch buffer without having to save current buffer
 set laststatus=2                " leave airline bar on
+set lazyredraw                  " don't redraw if action is not typed
+set nocompatible                " be not compatible with vi
+set ttyfast                     " faster redraw
 
 if has("clipboard")
-    set clipboard=unnamed       " allow for copy and paste into macOS clipboard
+    set clipboard=unnamed       " allow for copy and paste into MacOS clipboard
 endif
 if has("mouse")
-    set mouse=a
+    set mouse=a                 " enable mouse
 endif
 
 " when a prefix or leader key is pressed, wait indefinitely for further input,
@@ -86,19 +86,20 @@ set tabstop=2                   " 2 space tab
 set expandtab                   " use spaces for tabs
 set softtabstop=2               " 2 space tab
 set shiftwidth=2                " size of an "indent"
-set modelines=1
-set autoindent
+set autoindent                  " indent new lines
+set smartindent                 " smarter autoindenting
 set linebreak
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Keybindings
 
-let mapleader=" "
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :InstantMarkdownPreview<CR>
 map <C-t> :UndotreeToggle<CR>
-nmap <silent> ,/ :nohlsearch<CR>    " shortcut to stop highlighting search text
-nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " shortcut to insert a newline in normal mode
+" stop highlighting search text
+nmap <silent> ,/ :nohlsearch<CR>
+" insert a newline in normal mode
+nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" UI Layout
@@ -108,6 +109,7 @@ set number                      " display absolute line number on current line
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
 set wildmenu                    " visual autocomplete for command menu
+set wildmode=list:longest,full
 set showmatch                   " higlight matching parenthesis
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,15 +117,16 @@ set showmatch                   " higlight matching parenthesis
 
 set splitright                  " use a more natural splitting
 set splitbelow
-nnoremap <C-J> <C-W><C-J>       " save keystrokes
+nnoremap <C-H> <C-W><C-H>       " save keystrokes
+nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Searching
 
 set ignorecase                  " ignore case when searching
+set smartcase                   " override ignorecase if search pattern contains upper case characters
 set incsearch                   " search as characters are entered
 set hlsearch                    " highlight all matches
 
