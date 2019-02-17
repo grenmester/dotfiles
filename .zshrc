@@ -29,7 +29,8 @@ elif (( $+commands[vi] )); then
 fi
 
 if (( $+commands[emacs] )); then
-    alias e="emacs"
+    alias e="emacs -nw"
+    alias ew="emacs"
 fi
 
 # Shows the last 10 visited directories
