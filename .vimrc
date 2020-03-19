@@ -16,6 +16,8 @@ Plug 'tpope/vim-surround'                 " text objects for parentheses
 Plug 'vim-airline/vim-airline'            " better status line
 Plug 'vim-airline/vim-airline-themes'     " status line themes
 
+Plug 'lifepillar/vim-solarized8'
+
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
@@ -27,7 +29,9 @@ call plug#end()
 
 let g:plug_window='vertical topleft 75new'
 let g:better_whitespace_ctermcolor='grey'
+let g:better_whitespace_guicolor='grey'
 let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#left_sep = ' '
@@ -43,9 +47,9 @@ let g:vimtex_latexmk_options='-pdfxe -file-line-error'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
 
+set termguicolors
 set background=dark
-colorscheme solarized
-highlight clear SignColumn      " clear default color in sign column
+colorscheme solarized8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
