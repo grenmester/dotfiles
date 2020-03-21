@@ -128,12 +128,6 @@ set hlsearch                    " highlight all matches
 
 augroup configgroup
     autocmd!
-    autocmd FileType php setlocal expandtab
-    autocmd FileType php setlocal list
-    autocmd FileType php setlocal listchars=tab:+\ ,eol:-
-    autocmd FileType php setlocal formatprg=par\ -w80\ -T4
-    autocmd FileType ruby setlocal commentstring=#\ %s
-    autocmd FileType python setlocal commentstring=#\ %s
     autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufNewFile,BufRead *.cls setfiletype tex
+    autocmd BufNewFile,BufRead *.cls set syntax=tex
 augroup END
