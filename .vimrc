@@ -25,6 +25,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
+
 call plug#end()
 
 let g:plug_window='vertical topleft 75new'
@@ -61,11 +62,11 @@ set lazyredraw                  " don't redraw if action is not typed
 set nocompatible                " be not compatible with vi
 set ttyfast                     " faster redraw
 
-if has("clipboard")
-    set clipboard=unnamed       " allow for copy and paste into MacOS clipboard
+if has('clipboard')
+  set clipboard=unnamed         " allow for copy and paste into MacOS clipboard
 endif
-if has("mouse")
-    set mouse=a                 " enable mouse
+if has('mouse')
+  set mouse=a                   " enable mouse
 endif
 
 " when a prefix or leader key is pressed, wait indefinitely for further input
@@ -127,7 +128,7 @@ set hlsearch                    " highlight all matches
 """" Autocommands
 
 augroup configgroup
-    autocmd!
-    autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufNewFile,BufRead *.cls set syntax=tex
+  autocmd!
+  autocmd BufEnter Makefile setlocal noexpandtab
+  autocmd BufNewFile,BufRead *.cls set syntax=tex
 augroup END
