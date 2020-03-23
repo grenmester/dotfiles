@@ -213,8 +213,11 @@ setopt autocd
 # Makes cd push the old directory onto the directory stack
 setopt autopushd
 
-# Attempts to correct spelling of all arguments in a line
-setopt correct_all
+# Attempts to correct spelling of commands in a line
+setopt correct
+
+# Doesn't attempt to correct spelling of all arguments in a line
+unsetopt correctall
 
 # Allows comments in the interactive shell
 setopt interactive_comments
