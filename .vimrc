@@ -88,10 +88,9 @@ set linebreak                   " wrap long lines better
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Keybindings
 
-map <C-p> :InstantMarkdownPreview<CR>
-map <C-t> :UndotreeToggle<CR>
+nnoremap <C-t> :UndotreeToggle<CR>
 " stop highlighting search text
-nmap <silent> ,/ :nohlsearch<CR>
+nnoremap ,/ :nohlsearch<CR>
 " insert a newline in normal mode
 nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 
