@@ -33,9 +33,8 @@ let g:better_whitespace_ctermcolor='grey'
 let g:better_whitespace_guicolor='grey'
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+let g:peekaboo_delay=1000
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_theme='solarized'
 
