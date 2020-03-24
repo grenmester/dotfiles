@@ -18,10 +18,11 @@ Plug 'vim-airline/vim-airline-themes'     " status line themes
 
 Plug 'lifepillar/vim-solarized8'
 
-Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
