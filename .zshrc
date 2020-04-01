@@ -115,25 +115,6 @@ export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
 ############################################################################
-#### Environmental Variables
-
-path=(
-    "/opt/perl512/bin"
-    "/usr/local/openresty/bin"
-    "/usr/local/openresty/nginx/sbin"
-    "$HOME/git/resty-cli/bin"
-    "/Library/TeX/texbin"
-    "/usr/local/bin"
-    "/usr/bin"
-    "/bin"
-    "/usr/sbin"
-    "/sbin"
-)
-export PATH
-
-export PGDATA="/usr/local/pgsql/data"
-
-############################################################################
 #### Glob
 
 # Makes globs case-insensitive
