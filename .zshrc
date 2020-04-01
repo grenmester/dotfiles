@@ -104,8 +104,12 @@ alias -g ..........="../../../../../../../../.."
 set -o emacs
 
 # Sets default editor
-if (( $+commands[emacs] )); then
-    export EDITOR="emacs"
+if (( $+commands[nvim] )); then
+    export EDITOR="nvim"
+elif (( $+commands[vim] )); then
+    export EDITOR="vim"
+elif (( $+commands[vi] )); then
+    export EDITOR="vi"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
