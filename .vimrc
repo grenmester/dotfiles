@@ -5,13 +5,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
 Plug 'jreybert/vimagit'                   " add git workflow inside vim
 Plug 'junegunn/vim-peekaboo'              " show values of registers
-Plug 'kshenoy/vim-signature'              " display marks in sign column
+Plug 'kshenoy/vim-signature'              " show marks in sign column
 Plug 'majutsushi/tagbar'                  " generate and browse tags
 Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
 Plug 'mbbill/undotree'                    " undo history visualizer
-Plug 'mhinz/vim-signify'                  " display changed lines from version control in sign column
+Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
-Plug 'sjl/vitality.vim'                   " makes focus events in vim work when inside tmux
+Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
 Plug 'tpope/vim-surround'                 " text objects for parentheses
 Plug 'vim-airline/vim-airline'            " better status line
 Plug 'vim-airline/vim-airline-themes'     " status line themes
@@ -47,15 +47,15 @@ let g:vimtex_latexmk_options='-pdfxe -file-line-error'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
 
-set termguicolors
+set termguicolors               " enable true colors
 colorscheme solarized8
 set background=dark
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
 
-set backspace=indent,eol,start
-set hidden                      " switch buffer without having to save current buffer
+set backspace=indent,eol,start  " make backspace work as expected
+set hidden                      " allow switching buffers without saving
 set laststatus=2                " leave airline bar on
 set lazyredraw                  " don't redraw if action is not typed
 set nocompatible                " be not compatible with vi
