@@ -2,6 +2,7 @@
 """" Plugins
 
 call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'              " improved status line
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
 Plug 'jreybert/vimagit'                   " add git workflow inside vim
 Plug 'junegunn/vim-peekaboo'              " show values of registers
@@ -13,8 +14,6 @@ Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
 Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
 Plug 'tpope/vim-surround'                 " text objects for parentheses
-Plug 'vim-airline/vim-airline'            " better status line
-Plug 'vim-airline/vim-airline-themes'     " status line themes
 
 Plug 'lifepillar/vim-solarized8'
 
@@ -35,9 +34,6 @@ let g:better_whitespace_ctermcolor='grey'
 let g:better_whitespace_guicolor='grey'
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
-let g:airline#extensions#tabline#enabled=1
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_theme='solarized'
 
 let g:instant_markdown_autostart=0
 let g:instant_markdown_slow=1
@@ -52,11 +48,24 @@ colorscheme solarized8
 set background=dark
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Status Bar
+
+set laststatus=2                " leave status bar on
+set noshowmode                  " don't show mode when changing mode
+set showtabline=2               " leave tab line on
+
+let g:lightline = {
+      \   'colorscheme': 'solarized',
+      \   'active': {
+      \     'right': [['lineinfo'], ['percent'], ['filetype']]
+      \   },
+      \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
 
 set backspace=indent,eol,start  " make backspace work as expected
 set hidden                      " allow switching buffers without saving
-set laststatus=2                " leave airline bar on
 set lazyredraw                  " don't redraw if action is not typed
 set nocompatible                " be not compatible with vi
 set ttyfast                     " faster redraw
