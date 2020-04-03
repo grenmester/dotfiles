@@ -30,16 +30,15 @@ Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
 call plug#end()
 
 let g:plug_window='vertical topleft 75new'
+let g:peekaboo_delay=1000
 let g:better_whitespace_ctermcolor='grey'
 let g:better_whitespace_guicolor='grey'
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
-let g:peekaboo_delay=1000
 let g:airline#extensions#tabline#enabled=1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_theme='solarized'
 
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 let g:instant_markdown_autostart=0
 let g:instant_markdown_slow=1
 let g:tex_flavor = 'latex'
@@ -49,8 +48,8 @@ let g:vimtex_latexmk_options='-pdfxe -file-line-error'
 """" Colors
 
 set termguicolors
-set background=dark
 colorscheme solarized8
+set background=dark
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Misc
@@ -62,17 +61,17 @@ set lazyredraw                  " don't redraw if action is not typed
 set nocompatible                " be not compatible with vi
 set ttyfast                     " faster redraw
 
+" when a prefix or leader key is pressed, wait indefinitely for further input
+" instead of timing out after one second
+set notimeout
+set ttimeout
+
 if has('clipboard')
   set clipboard=unnamed         " allow for copy and paste into MacOS clipboard
 endif
 if has('mouse')
   set mouse=a                   " enable mouse
 endif
-
-" when a prefix or leader key is pressed, wait indefinitely for further input
-" instead of timing out after one second
-set notimeout
-set ttimeout
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Space and Tabs
@@ -108,8 +107,8 @@ set showmatch                   " higlight matching parenthesis
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Windows
 
-set splitright                  " use a more natural splitting
-set splitbelow
+set splitbelow                  " use a more natural splitting
+set splitright
 nnoremap <C-H> <C-W><C-H>       " save keystrokes
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
