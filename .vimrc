@@ -17,14 +17,14 @@ Plug 'tpope/vim-surround'                 " text objects for parentheses
 
 Plug 'lifepillar/vim-solarized8'
 
-Plug 'mattn/emmet-vim', {'for': 'html'}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'on': 'InstantMarkdownPreview'}
-Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
-Plug 'keith/tmux.vim', {'for': 'tmux'}
-Plug 'cespare/vim-toml', {'for': 'toml'}
-Plug 'maralla/vim-toml-enhance', {'for': 'toml'}
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
+Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim'
+Plug 'keith/tmux.vim'
+Plug 'cespare/vim-toml'
+Plug 'maralla/vim-toml-enhance'
 
 call plug#end()
 
@@ -127,7 +127,7 @@ nnoremap <C-L> <C-W><C-L>
 """" Searching
 
 set ignorecase                  " ignore case when searching
-set smartcase                   " override ignorecase if search pattern contains upper case characters
+set smartcase                   " only ignore case when input is all lower case
 set incsearch                   " search as characters are entered
 set hlsearch                    " highlight all matches
 
