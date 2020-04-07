@@ -2,6 +2,9 @@
 """" Plugins
 
 call plug#begin('~/.vim/plugged')
+" Colorscheme
+Plug 'lifepillar/vim-solarized8'
+" General
 Plug 'itchyny/lightline.vim'              " improved status line
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
 Plug 'jreybert/vimagit'                   " add git workflow inside vim
@@ -14,9 +17,7 @@ Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
 Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
 Plug 'tpope/vim-surround'                 " text objects for parentheses
-
-Plug 'lifepillar/vim-solarized8'
-
+" Language-specific
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
@@ -25,20 +26,18 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'keith/tmux.vim'
 Plug 'cespare/vim-toml'
 Plug 'maralla/vim-toml-enhance'
-
 call plug#end()
 
-let g:plug_window='vertical topleft 75new'
-let g:peekaboo_delay=1000
-let g:better_whitespace_ctermcolor='grey'
-let g:better_whitespace_guicolor='grey'
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
-
-let g:instant_markdown_autostart=0
-let g:instant_markdown_slow=1
+let g:plug_window = 'vertical topleft 75new'
+let g:peekaboo_delay = 1000
+let g:better_whitespace_ctermcolor = 'grey'
+let g:better_whitespace_guicolor = 'grey'
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_slow = 1
 let g:tex_flavor = 'latex'
-let g:vimtex_latexmk_options='-pdfxe -file-line-error'
+let g:vimtex_latexmk_options = '-pdfxe -file-line-error'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
