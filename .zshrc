@@ -33,8 +33,9 @@ if (( $+commands[emacs] )); then
     alias ew="emacs"
 fi
 
-# Shows the last 10 visited directories
-alias ds="dirs -v | head -10"
+if (( $+commands[tmux] )); then
+    alias t="tmux"
+fi
 
 if (( $+commands[hub] )); then
     alias g="hub"
@@ -43,49 +44,49 @@ elif (( $+commands[git] )); then
 fi
 
 if (( $+commands[exa] )); then
-    alias l='exa --classify --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+  local ignore_list=".git|node_modules"
 
-    function li() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --classify --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
-    }
+  l() {
+    emulate -LR zsh
+    exa --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
+  }
 
-    alias lg='exa --classify --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
+  li() {
+    emulate -LR zsh
+    l --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    function lgi() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --classify --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
-    }
+  lg() {
+    emulate -LR zsh
+    l --grid "$@"
+  }
 
-    alias lt='exa --classify --color=always --color-scale --tree --ignore-glob ".git" --long --git --header'
+  lgi() {
+    emulate -LR zsh
+    lg --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    function lti() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --classify --color=always --color-scale --tree --ignore-glob ".git$ignore" --long --git --header
-    }
+  lt() {
+    emulate -LR zsh
+    l --tree "$@"
+  }
 
-    function ltl() {
-        exa --classify --color=always --color-scale --tree --level=$1 --ignore-glob ".git" --long --git --header
-    }
+  lti() {
+    emulate -LR zsh
+    lt --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    function ltli() {
-        local ignore=""
-        for i in ${2+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --classify --color=always --color-scale --tree --level=$1 --ignore-glob ".git$ignore" --long --git --header
-    }
+  ltl() {
+    emulate -LR zsh
+    lt --level="$@"
+  }
+
+  ltli() {
+    emulate -LR zsh
+    ltl "$1" --ignore-glob="${ignore_list}|$2" "${@:3}"
+  }
 else
-    alias l='ls -FGA'
+  alias l="ls -AFGl"
 fi
 
 alias -g ...="../.."
@@ -96,6 +97,9 @@ alias -g .......="../../../../../.."
 alias -g ........="../../../../../../.."
 alias -g .........="../../../../../../../.."
 alias -g ..........="../../../../../../../../.."
+
+# Shows the last 10 visited directories
+alias ds="dirs -v | head -10"
 
 ############################################################################
 #### Editor
