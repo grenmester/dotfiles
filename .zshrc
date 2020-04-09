@@ -6,41 +6,41 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 
 if [[ -f $ZPLUG_HOME/init.zsh ]]; then
-    source $ZPLUG_HOME/init.zsh
+  source $ZPLUG_HOME/init.zsh
 
-    zplug "zplug/zplug", hook-build:"zplug --self-manage"
+  zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
-    if ! zplug check; then
-        zplug install
-    fi
+  if ! zplug check; then
+    zplug install
+  fi
 
-    zplug load
+  zplug load
 fi
 
 ############################################################################
 #### Aliases
 
 if (( $+commands[nvim] )); then
-    alias v="nvim"
+  alias v="nvim"
 elif (( $+commands[vim] )); then
-    alias v="vim"
+  alias v="vim"
 elif (( $+commands[vi] )); then
-    alias v="vi"
+  alias v="vi"
 fi
 
 if (( $+commands[emacs] )); then
-    alias e="emacs -nw"
-    alias ew="emacs"
+  alias e="emacs -nw"
+  alias ew="emacs"
 fi
 
 if (( $+commands[tmux] )); then
-    alias t="tmux"
+  alias t="tmux"
 fi
 
 if (( $+commands[hub] )); then
-    alias g="hub"
+  alias g="hub"
 elif (( $+commands[git] )); then
-    alias g="git"
+  alias g="git"
 fi
 
 if (( $+commands[exa] )); then
@@ -105,15 +105,15 @@ alias ds="dirs -v | head -10"
 #### Editor
 
 # Allows editting commands in zle with emacs operations
-set -o emacs
+bindkey -e
 
 # Sets default editor
 if (( $+commands[nvim] )); then
-    export EDITOR="nvim"
+  export EDITOR="nvim"
 elif (( $+commands[vim] )); then
-    export EDITOR="vim"
+  export EDITOR="vim"
 elif (( $+commands[vi] )); then
-    export EDITOR="vi"
+  export EDITOR="vi"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -169,16 +169,16 @@ unsetopt share_history
 ############################################################################
 #### Man
 
-function man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-        LESS_TERMCAP_md=$(printf "\e[1;34m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[30;48;5;244m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[4;33m") \
-        man $@
+man() {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;32m") \
+    LESS_TERMCAP_md=$(printf "\e[1;34m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[30;48;5;244m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[4;33m") \
+    man "$@"
 }
 
 ############################################################################
@@ -226,7 +226,7 @@ setopt rm_star_wait
 # Enable parameter expansion and other substitutions in $PROMPT
 setopt prompt_subst
 
-function prompt_git_info {
+prompt_git_info() {
   emulate -LR zsh
   # Branch info
   local ref
@@ -242,7 +242,7 @@ function prompt_git_info {
   fi
   # Remote info
   local remote
-  if $(echo "$(command git log @{upstream}..HEAD 2> /dev/null)" | grep '^commit' &> /dev/null); then
+  if $(echo "$(command git log @{upstream}..HEAD 2> /dev/null)" | grep "^commit" &> /dev/null); then
     remote="%{$fg[yellow]%}+"
   fi
   echo "(${ref#refs/heads/}) ${dirty}${remote} "
