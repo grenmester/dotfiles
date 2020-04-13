@@ -1,85 +1,85 @@
 [alias]
-    a = add
-    aa = add --all
-    ap = add --patch
-    b = branch
-    c = commit
-    ca = commit --amend
-    cm = commit --message
-    ce = clean
-    cef = clean --force
-    cl = clone
-    co = checkout
-    d = diff
-    dc = diff --cached
-    pl = pull
-    ps = push
-    psf = push --force
-    psuom = push --set-upstream origin master
-    r = reset
-    rh = reset --hard
-    rb = rebase
-    rbc = rebase --continue
-    rbi = rebase --interactive
-    rmc = rm --cached
-    s = status
-    st = stash
-    stp = stash pop
+  a = add
+  aa = add --all
+  ap = add --patch
+  b = branch
+  c = commit
+  ca = commit --amend
+  cm = commit --message
+  ce = clean
+  cef = clean --force
+  cl = clone
+  co = checkout
+  d = diff
+  dc = diff --cached
+  pl = pull
+  ps = push
+  psf = push --force
+  psuom = push --set-upstream origin master
+  r = reset
+  rh = reset --hard
+  rb = rebase
+  rbc = rebase --continue
+  rbi = rebase --interactive
+  rmc = rm --cached
+  s = status
+  st = stash
+  stp = stash pop
 
-    ;; prettier git log to quickly show commits
-    hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
+  ;; prettier git log to quickly show commits
+  hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
 
-    ;; prettier git log to show only file additions and deletions
-    stat = log --graph --stat --pretty=format:'%C(red)%h%C(reset) %C(ul)%s%C(reset)%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)%n' --abbrev-commit --date=relative
+  ;; prettier git log to show only file additions and deletions
+  stat = log --graph --stat --pretty=format:'%C(red)%h%C(reset) %C(ul)%s%C(reset)%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)%n' --abbrev-commit --date=relative
 
-    ;; prettier git reflog
-    rlog = reflog --pretty=format:'%C(red)%h%C(reset) %C(ul)%gD%C(reset): %gs%C(yellow)%d%C(green) (%ar)%C(blue) [%an]%C(reset)'
+  ;; prettier git reflog
+  rlog = reflog --pretty=format:'%C(red)%h%C(reset) %C(ul)%gD%C(reset): %gs%C(yellow)%d%C(green) (%ar)%C(blue) [%an]%C(reset)'
 
 [branch "master"]
-    remote = origin
+  remote = origin
 
 [color]
-    ui = auto
-    status = auto
+  ui = auto
+  status = auto
 
 [color "branch"]
-    current = yellow bold
-    local = yellow
-    remote = green
+  current = yellow bold
+  local = yellow
+  remote = green
 
 [color "diff"]
-    meta = yellow bold
-    frag = blue bold
-    old = red bold
-    new = green bold
-    whitespace = black reverse
+  meta = yellow bold
+  frag = blue bold
+  old = red bold
+  new = green bold
+  whitespace = black reverse
 
 [color "grep"]
-	filename = blue
-	linenumber = yellow
-	match = green black bold
-    separator = normal
+  filename = blue
+  linenumber = yellow
+  match = green black bold
+  separator = normal
 
 [color "status"]
-	header = normal
-	added = green
-    changed = yellow
-    untracked = red
-    branch = blue bold
+  header = normal
+  added = green
+  changed = yellow
+  untracked = red
+  branch = blue bold
 
 [core]
-    editor = /usr/local/bin/nvim
-    excludesfile = ~/.gitignore
+  editor = /usr/local/bin/nvim
+  excludesfile = ~/.gitignore
 
 [diff]
-    tool = vimdiff
+  tool = vimdiff
 
 [grep]
-    linenumber = true
+  linenumber = true
 
 [push]
-    default = simple
+  default = simple
 
 [user]
-	name = Jacky Lee
-	email = dr.jackylee@gmail.com
+  name = Jacky Lee
+  email = dr.jackylee@gmail.com
