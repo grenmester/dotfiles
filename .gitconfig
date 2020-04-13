@@ -8,6 +8,7 @@
   cm = commit --message
   ce = clean
   cef = clean --force
+  cefx = clean --force -x
   cl = clone
   co = checkout
   d = diff
@@ -25,6 +26,11 @@
   s = status
   st = stash
   stp = stash pop
+
+  ;; hub aliases
+  br = browse
+  cr = create
+  crp = create --private
 
   ;; prettier git log to quickly show commits
   hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
