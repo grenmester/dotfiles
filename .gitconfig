@@ -68,8 +68,11 @@
     branch = blue bold
 
 [core]
-    editor = /usr/local/bin/emacs
+    editor = /usr/local/bin/nvim
     excludesfile = ~/.gitignore
+
+[diff]
+    tool = vimdiff
 
 [grep]
     linenumber = true
