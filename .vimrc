@@ -26,6 +26,12 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'keith/tmux.vim'
 Plug 'cespare/vim-toml'
 Plug 'maralla/vim-toml-enhance'
+" Neovim-specific
+if has('nvim')
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
+  Plug 'Shougo/neosnippet.vim'                    " snippet support
+  Plug 'Shougo/neosnippet-snippets'               " common snippets
+endif
 call plug#end()
 
 let g:plug_window = 'vertical topleft 75new'
