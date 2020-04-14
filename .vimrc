@@ -2,8 +2,10 @@
 """" Plugins
 
 call plug#begin('~/.vim/plugged')
+
 " Colorscheme
 Plug 'lifepillar/vim-solarized8'
+
 " General
 Plug 'itchyny/lightline.vim'              " improved status line
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
@@ -17,6 +19,7 @@ Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
 Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
 Plug 'tpope/vim-surround'                 " text objects for parentheses
+
 " Language-specific
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
@@ -26,12 +29,14 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'keith/tmux.vim'
 Plug 'cespare/vim-toml'
 Plug 'maralla/vim-toml-enhance'
+
 " Neovim-specific
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
   Plug 'Shougo/neosnippet.vim'                    " snippet support
   Plug 'Shougo/neosnippet-snippets'               " common snippets
 endif
+
 call plug#end()
 
 let g:plug_window = 'vertical topleft 75new'
@@ -67,47 +72,6 @@ let g:lightline = {
       \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""" Misc
-
-set backspace=indent,eol,start  " make backspace work as expected
-set hidden                      " allow switching buffers without saving
-set lazyredraw                  " don't redraw if action is not typed
-set nocompatible                " be not compatible with vi
-set ttyfast                     " faster redraw
-
-" when a prefix or leader key is pressed, wait indefinitely for further input
-" instead of timing out after one second
-set notimeout
-set ttimeout
-
-if has('clipboard')
-  set clipboard=unnamed         " allow for copy and paste into MacOS clipboard
-endif
-if has('mouse')
-  set mouse=a                   " enable mouse
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""" Space and Tabs
-
-set tabstop=2                   " 2 space tab
-set expandtab                   " use spaces for tabs
-set softtabstop=2               " 2 space tab
-set shiftwidth=2                " size of an "indent"
-set autoindent                  " indent new lines
-set smartindent                 " smarter autoindenting
-set linebreak                   " wrap long lines better
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""" Keybindings
-
-nnoremap <C-t> :UndotreeToggle<CR>
-" stop highlighting search text
-nnoremap ,/ :nohlsearch<CR>
-" insert a newline in normal mode
-nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" UI Layout
 
 set relativenumber              " set relative line numbers
@@ -121,12 +85,8 @@ set showmatch                   " higlight matching parenthesis
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Windows
 
-set splitbelow                  " use a more natural splitting
-set splitright
-nnoremap <C-H> <C-W><C-H>       " save keystrokes
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
+set splitbelow                  " horizontal splits open down
+set splitright                  " vertical splits open to the right
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Searching
@@ -135,6 +95,50 @@ set ignorecase                  " ignore case when searching
 set smartcase                   " only ignore case when input is all lower case
 set incsearch                   " search as characters are entered
 set hlsearch                    " highlight all matches
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Space and Tabs
+
+set tabstop=2                   " 2 space tab
+set expandtab                   " use spaces for tabs
+set softtabstop=2               " 2 space tab
+set shiftwidth=2                " size of an indent
+set autoindent                  " indent new lines
+set smartindent                 " smarter autoindenting
+set linebreak                   " wrap long lines better
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Misc
+
+set backspace=indent,eol,start  " make backspace work as expected
+set hidden                      " allow switching buffers without saving
+set lazyredraw                  " don't redraw if action is not typed
+set nocompatible                " be not compatible with vi
+set ttyfast                     " faster redraw
+set notimeout                   " do not time out prefix or leader keys
+set ttimeout                    " time out key code sequences
+
+if has('clipboard')
+  set clipboard=unnamed         " allow for copy and paste into MacOS clipboard
+endif
+if has('mouse')
+  set mouse=a                   " enable mouse
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Key Mappings
+
+" save keystrokes
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+
+nnoremap <C-t> :UndotreeToggle<CR>
+" stop highlighting search text
+nnoremap ,/ :nohlsearch<CR>
+" insert a newline in normal mode
+nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Autocommands
