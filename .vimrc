@@ -15,6 +15,7 @@ Plug 'kshenoy/vim-signature'              " show marks in sign column
 Plug 'majutsushi/tagbar'                  " generate and browse tags
 Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
 Plug 'mbbill/undotree'                    " undo history visualizer
+Plug 'mengelbrecht/lightline-bufferline'  " show buffers in tabline
 Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
 Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
@@ -64,10 +65,34 @@ set laststatus=2                " leave status bar on
 set noshowmode                  " don't show mode when changing mode
 set showtabline=2               " leave tab line on
 
+function! LightlineTabRight()
+  return reverse(lightline#tabs())
+endfunction
+
 let g:lightline = {
-      \   'colorscheme': 'solarized',
       \   'active': {
-      \     'right': [['lineinfo'], ['percent'], ['filetype']]
+      \     'left': [['bufnum', 'mode', 'paste'],
+      \              ['cocstatus', 'currentfunction', 'readonly', 'filename', 'modified']],
+      \     'right': [['lineinfo'],
+      \               ['percent'],
+      \               ['filetype']],
+      \   },
+      \   'colorscheme': 'solarized',
+      \   'component_expand': {
+      \     'buffers': 'lightline#bufferline#buffers',
+      \     'rtabs': 'LightlineTabRight',
+      \   },
+      \   'component_function': {
+      \     'cocstatus': 'coc#status',
+      \     'currentfunction': 'CocCurrentFunction',
+      \   },
+      \   'component_type': {
+      \     'buffers': 'tabsel',
+      \     'rtabs': 'tabsel',
+      \   },
+      \   'tabline': {
+      \     'left': [['buffers']],
+      \     'right': [['rtabs']],
       \   },
       \ }
 
