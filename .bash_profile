@@ -11,8 +11,14 @@ elif command -v vi &>/dev/null; then
     alias v="vi"
 fi
 
-# Shows the last 10 visited directories
-alias ds="dirs -v | head -10"
+if command -v emacs &>/dev/null; then
+    alias e="emacs -nw"
+    alias ew="emacs"
+fi
+
+if command -v tmux &>/dev/null; then
+    alias t="tmux"
+fi
 
 if command -v hub &>/dev/null; then
     alias g="hub"
@@ -21,47 +27,41 @@ elif command -v git &>/dev/null; then
 fi
 
 if command -v exa &>/dev/null; then
-    alias l='exa --color=always --color-scale --all --ignore-glob ".git" --long --git --header'
+    ignore_list=".git|node_modules"
 
-    function li() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --color=always --color-scale --all --ignore-glob ".git$ignore" --long --git --header
+    l() {
+        exa --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
     }
 
-    alias lg='exa --color=always --color-scale --grid --all --ignore-glob ".git" --long --git --header'
-
-    function lgi() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --color=always --color-scale --grid --all --ignore-glob ".git$ignore" --long --git --header
+    li() {
+        l --ignore-glob="${ignore_list}|$1" "${@:2}"
     }
 
-    alias lt='exa --color=always --color-scale --tree --all --ignore-glob ".git" --long --git --header'
-
-    function lti() {
-        local ignore=""
-        for i in ${1+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --color=always --color-scale --tree --all --ignore-glob ".git$ignore" --long --git --header
+    lg() {
+        l --grid "$@"
     }
 
-    function ltl() {
-        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git" --long --git --header
+    lgi() {
+        lg --ignore-glob="${ignore_list}|$1" "${@:2}"
     }
 
-    function ltli() {
-        local ignore=""
-        for i in ${2+"$@"}; do
-            ignore+="|$i"
-        done
-        exa --color=always --color-scale --tree --all --level=$1 --ignore-glob ".git$ignore" --long --git --header
+    lt() {
+        l --tree "$@"
     }
+
+    lti() {
+        lt --ignore-glob="${ignore_list}|$1" "${@:2}"
+    }
+
+    ltl() {
+        lt --level="$@"
+    }
+
+    ltli() {
+        ltl "$1" --ignore-glob="${ignore_list}|$2" "${@:3}"
+    }
+else
+    alias l="ls -AFGl"
 fi
 
 alias ..="cd .."
@@ -72,19 +72,23 @@ alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias ........="cd ../../../../../../.."
 alias .........="cd ../../../../../../../.."
-alias ..........="cd ../../../../../../../../.."
+
+# Shows the last 10 visited directories
+alias ds="dirs -v | head -10"
 
 ############################################################################
 #### Editor
 
-# Allows editting commands in line editor with vi operations
-set -o vi
+# Allows editting commands in line editor with emacs operations
+set -o emacs
 
 # Sets default editor
 if command -v nvim &>/dev/null; then
     export EDITOR="nvim"
 elif command -v vim &>/dev/null; then
     export EDITOR="vim"
+elif command -v vi &>/dev/null; then
+    export EDITOR="vi"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
