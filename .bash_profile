@@ -4,64 +4,64 @@
 #### Aliases
 
 if command -v nvim &>/dev/null; then
-    alias v="nvim"
+  alias v="nvim"
 elif command -v vim &>/dev/null; then
-    alias v="vim"
+  alias v="vim"
 elif command -v vi &>/dev/null; then
-    alias v="vi"
+  alias v="vi"
 fi
 
 if command -v emacs &>/dev/null; then
-    alias e="emacs -nw"
-    alias ew="emacs"
+  alias e="emacs -nw"
+  alias ew="emacs"
 fi
 
 if command -v tmux &>/dev/null; then
-    alias t="tmux"
+  alias t="tmux"
 fi
 
 if command -v hub &>/dev/null; then
-    alias g="hub"
+  alias g="hub"
 elif command -v git &>/dev/null; then
-    alias g="git"
+  alias g="git"
 fi
 
 if command -v exa &>/dev/null; then
-    ignore_list=".git|node_modules"
+  ignore_list=".git|node_modules"
 
-    l() {
-        exa --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
-    }
+  l() {
+    exa --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
+  }
 
-    li() {
-        l --ignore-glob="${ignore_list}|$1" "${@:2}"
-    }
+  li() {
+    l --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    lg() {
-        l --grid "$@"
-    }
+  lg() {
+    l --grid "$@"
+  }
 
-    lgi() {
-        lg --ignore-glob="${ignore_list}|$1" "${@:2}"
-    }
+  lgi() {
+    lg --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    lt() {
-        l --tree "$@"
-    }
+  lt() {
+    l --tree "$@"
+  }
 
-    lti() {
-        lt --ignore-glob="${ignore_list}|$1" "${@:2}"
-    }
+  lti() {
+    lt --ignore-glob="${ignore_list}|$1" "${@:2}"
+  }
 
-    ltl() {
-        lt --level="$@"
-    }
+  ltl() {
+    lt --level="$@"
+  }
 
-    ltli() {
-        ltl "$1" --ignore-glob="${ignore_list}|$2" "${@:3}"
-    }
+  ltli() {
+    ltl "$1" --ignore-glob="${ignore_list}|$2" "${@:3}"
+  }
 else
-    alias l="ls -AFGl"
+  alias l="ls -AFGl"
 fi
 
 alias ..="cd .."
@@ -84,11 +84,11 @@ set -o emacs
 
 # Sets default editor
 if command -v nvim &>/dev/null; then
-    export EDITOR="nvim"
+  export EDITOR="nvim"
 elif command -v vim &>/dev/null; then
-    export EDITOR="vim"
+  export EDITOR="vim"
 elif command -v vi &>/dev/null; then
-    export EDITOR="vi"
+  export EDITOR="vi"
 fi
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -103,15 +103,15 @@ export PGDATA=/usr/local/pgsql/data
 #### Man
 
 function man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-        LESS_TERMCAP_md=$(printf "\e[1;34m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[30;48;5;244m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[4;33m") \
-        man $@
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;32m") \
+    LESS_TERMCAP_md=$(printf "\e[1;34m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[30;48;5;244m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[4;33m") \
+    man $@
 }
 
 ############################################################################
@@ -141,21 +141,21 @@ GIT_THEME_PROMPT_DIRTY='✗'
 GIT_THEME_PROMPT_UNPUSHED='+'
 GIT_THEME_PROMPT_CLEAN='✓'
 
-function parse_git_dirty {
-    if [[ -n $(git status -s 2> /dev/null |grep -v ^# | grep -v "working directory clean" ) ]]; then
-        echo -ne "${RED}${GIT_THEME_PROMPT_DIRTY}"
-    else
-        echo -ne "${GREEN}${GIT_THEME_PROMPT_CLEAN}"
-    fi
-    GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD 2> /dev/null)
-    GIT_ORIGIN_UNPUSHED=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline 2>&1 | awk '{ print $1 }')
-    if [[ $GIT_ORIGIN_UNPUSHED != "" ]]; then
-        echo -e "${YELLOW}${GIT_THEME_PROMPT_UNPUSHED}"
-    fi
+function parse_git_dirty() {
+  if [[ -n $(git status -s 2> /dev/null |grep -v ^\# | grep -v "working directory clean" ) ]]; then
+    echo -ne "${RED}${GIT_THEME_PROMPT_DIRTY}"
+  else
+    echo -ne "${GREEN}${GIT_THEME_PROMPT_CLEAN}"
+  fi
+  GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD 2> /dev/null)
+  GIT_ORIGIN_UNPUSHED=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline 2>&1 | awk '{ print $1 }')
+  if [[ $GIT_ORIGIN_UNPUSHED != "" ]]; then
+    echo -e "${YELLOW}${GIT_THEME_PROMPT_UNPUSHED}"
+  fi
 }
 
 function parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1) $(parse_git_dirty) /"
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1) $(parse_git_dirty) /"
 }
 
 export PS1="\[${BOLD}${MAGENTA}\]\u\[$BASE1\]@\[$ORANGE\]\h \[$BLUE\]\w\[$WHITE\] \$([[ -n \$(git branch 2> /dev/null) ]])\[$VIOLET\]\$(parse_git_branch)\[$BASE1\]\$ \[$RESET\]"
