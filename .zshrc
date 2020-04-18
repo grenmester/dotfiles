@@ -223,7 +223,7 @@ setopt rm_star_wait
 ############################################################################
 #### Prompt
 
-# Enable parameter expansion and other substitutions in $PROMPT
+# Enable parameter expansion and other substitutions in prompt sequences
 setopt prompt_subst
 
 prompt_git_info() {
@@ -236,17 +236,17 @@ prompt_git_info() {
   # Dirty info
   local dirty
   if [[ -n $(command git status --porcelain 2> /dev/null | tail -n1) ]]; then
-    dirty="%{$fg[red]%}✗"
+    dirty="%F{red}✗"
   else
-    dirty="%{$fg[green]%}✓"
+    dirty="%F{green}✓"
   fi
   # Remote info
   local remote
   if $(echo "$(command git log @{upstream}..HEAD 2> /dev/null)" | grep "^commit" &> /dev/null); then
-    remote="%{$fg[yellow]%}+"
+    remote="%F{yellow}+"
   fi
   echo "(${ref#refs/heads/}) ${dirty}${remote} "
 }
 
-PROMPT='%B%{$fg[blue]%}%~ %{$fg[yellow]%}$(prompt_git_info)%{$fg[default]%}$ %f%b'
-RPROMPT='%B%{$fg[cyan]%}%n%{$fg[default]%}@%{$fg[magenta]%}%m%f%b'
+PROMPT='%B%F{blue}%~ %F{yellow}$(prompt_git_info)%F{default}$ %f%b'
+RPROMPT='%B%F{cyan}%n%F{default}@%F{magenta}%m %(?.%F{green}.%F{red})[%?]%f%b'
