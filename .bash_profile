@@ -94,15 +94,10 @@ export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
 ############################################################################
-#### Environmental Variables
-
-export PATH=/opt/perl512/bin:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$HOME/git/resty-cli/bin:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export PGDATA=/usr/local/pgsql/data
-
-############################################################################
 #### Man
 
-function man() {
+# Colored man pages
+man() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;32m") \
     LESS_TERMCAP_md=$(printf "\e[1;34m") \
@@ -111,7 +106,7 @@ function man() {
     LESS_TERMCAP_so=$(printf "\e[30;48;5;244m") \
     LESS_TERMCAP_ue=$(printf "\e[0m") \
     LESS_TERMCAP_us=$(printf "\e[4;33m") \
-    man $@
+    man "$@"
 }
 
 ############################################################################
