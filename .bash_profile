@@ -112,46 +112,45 @@ man() {
 ############################################################################
 #### Prompt
 
-# Solarized Colors
-BASE03=$(tput setaf 234)
-BASE02=$(tput setaf 235)
-BASE01=$(tput setaf 240)
-BASE00=$(tput setaf 241)
-BASE0=$(tput setaf 244)
-BASE1=$(tput setaf 245)
-BASE2=$(tput setaf 254)
-BASE3=$(tput setaf 230)
-YELLOW=$(tput setaf 136)
-ORANGE=$(tput setaf 166)
-RED=$(tput setaf 160)
-MAGENTA=$(tput setaf 125)
-VIOLET=$(tput setaf 61)
-BLUE=$(tput setaf 33)
-CYAN=$(tput setaf 37)
-GREEN=$(tput setaf 64)
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
+# Solarized colors
+bold=$(tput bold)
+base03=$(tput setaf 234)
+base02=$(tput setaf 235)
+base01=$(tput setaf 240)
+base00=$(tput setaf 241)
+base0=$(tput setaf 244)
+base1=$(tput setaf 245)
+base2=$(tput setaf 254)
+base3=$(tput setaf 230)
+yellow=$(tput setaf 136)
+orange=$(tput setaf 166)
+red=$(tput setaf 160)
+magenta=$(tput setaf 125)
+violet=$(tput setaf 61)
+blue=$(tput setaf 33)
+cyan=$(tput setaf 37)
+green=$(tput setaf 64)
+reset=$(tput sgr0)
 
-GIT_THEME_PROMPT_DIRTY='✗'
-GIT_THEME_PROMPT_UNPUSHED='+'
-GIT_THEME_PROMPT_CLEAN='✓'
-
-function parse_git_dirty() {
-  if [[ -n $(git status -s 2> /dev/null |grep -v ^\# | grep -v "working directory clean" ) ]]; then
-    echo -ne "${RED}${GIT_THEME_PROMPT_DIRTY}"
+prompt_git_info() {
+  # Branch info
+  local ref
+  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || \
+    return 0
+  # Dirty info
+  local dirty
+  if [[ -n $(command git status --porcelain 2> /dev/null | tail -n1) ]]; then
+    dirty="${red}✗"
   else
-    echo -ne "${GREEN}${GIT_THEME_PROMPT_CLEAN}"
+    dirty="${green}✓"
   fi
-  GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD 2> /dev/null)
-  GIT_ORIGIN_UNPUSHED=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline 2>&1 | awk '{ print $1 }')
-  if [[ $GIT_ORIGIN_UNPUSHED != "" ]]; then
-    echo -e "${YELLOW}${GIT_THEME_PROMPT_UNPUSHED}"
+  # Remote info
+  local remote
+  if $(echo "$(command git log @{upstream}..HEAD 2> /dev/null)" | grep "^commit" &> /dev/null); then
+    remote="${yellow}+"
   fi
+  echo "(${ref#refs/heads/}) ${dirty}${remote} "
 }
 
-function parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1) $(parse_git_dirty) /"
-}
-
-export PS1="\[${BOLD}${MAGENTA}\]\u\[$BASE1\]@\[$ORANGE\]\h \[$BLUE\]\w\[$WHITE\] \$([[ -n \$(git branch 2> /dev/null) ]])\[$VIOLET\]\$(parse_git_branch)\[$BASE1\]\$ \[$RESET\]"
-export PS2="\[${BOLD}${MAGENTA}\]→ \[$RESET\]"
+export PS1="${bold}${cyan}\u${reset}${bold}@${magenta}\h ${blue}\w ${yellow}\$(prompt_git_info)${reset}${bold}\$ ${reset}"
