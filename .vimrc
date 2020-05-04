@@ -69,6 +69,8 @@ function! LightlineTabRight()
   return reverse(lightline#tabs())
 endfunction
 
+let g:lightline#bufferline#show_number = 1
+
 let g:lightline = {
       \   'active': {
       \     'left': [['bufnum', 'mode', 'paste'],
