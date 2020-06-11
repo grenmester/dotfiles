@@ -83,6 +83,9 @@
 [grep]
   linenumber = true
 
+[pull]
+  rebase = false
+
 [push]
   default = simple
 
