@@ -3,6 +3,8 @@
   aa = add --all
   ap = add --patch
   b = branch
+  ba = branch --all
+  bd = branch --delete
   c = commit
   ca = commit --amend
   cm = commit --message
