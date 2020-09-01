@@ -1,20 +1,19 @@
 #!/usr/bin/env zsh
 
 ############################################################################
-#### Zplug
+#### Plugins
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ -f $HOME/.zinit/bin/zinit.zsh ]]; then
+  source $HOME/.zinit/bin/zinit.zsh
+  autoload -Uz _zinit
+  (( ${+_comps} )) && _comps[zinit]=_zinit
 
-if [[ -f $ZPLUG_HOME/init.zsh ]]; then
-  source $ZPLUG_HOME/init.zsh
+  zinit light-mode lucid wait for \
+    atload"zicompinit; zicdreplay" blockf zsh-users/zsh-completions \
+    zdharma/history-search-multi-word \
+    zsh-users/zsh-syntax-highlighting
 
-  zplug "zplug/zplug", hook-build:"zplug --self-manage"
-
-  if ! zplug check; then
-    zplug install
-  fi
-
-  zplug load
+  zstyle ":history-search-multi-word" highlight-color "fg=black,bg=yellow"
 fi
 
 ############################################################################
