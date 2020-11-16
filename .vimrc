@@ -50,6 +50,20 @@ let g:instant_markdown_autostart = 0
 let g:instant_markdown_slow = 1
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk_options = '-pdfxe -file-line-error'
+let g:coc_global_extensions = [
+      \   'coc-explorer',
+      \   'coc-neosnippet',
+      \   'coc-emmet',
+      \   'coc-html',
+      \   'coc-css',
+      \   'coc-eslint',
+      \   'coc-prettier',
+      \   'coc-markdownlint',
+      \   'coc-vimtex',
+      \   'coc-python',
+      \   'coc-vimlsp',
+      \   'coc-json',
+      \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
