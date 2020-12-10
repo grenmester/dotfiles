@@ -77,6 +77,21 @@ alias .........="cd ../../../../../../../.."
 alias ds="dirs -v | head -10"
 
 ############################################################################
+#### Completion
+
+# Cycle through matches for completion
+bind "TAB":menu-complete
+
+# Displays a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# First tab only performs partial completion
+bind "set menu-complete-display-prefix on"
+
+# Makes matching case-insensitive
+bind "set completion-ignore-case on"
+
+############################################################################
 #### Editor
 
 # Allows editting commands in line editor with emacs operations
@@ -108,6 +123,15 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[4;33m") \
     man "$@"
 }
+
+############################################################################
+#### Miscellaneous
+
+# Doesn’t overwrite existing files with '>' but uses '>!' instead
+set -o noclobber
+
+# Enter directory path to automatically cd into the directory
+shopt -s autocd
 
 ############################################################################
 #### Prompt
