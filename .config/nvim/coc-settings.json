@@ -11,7 +11,6 @@
   "explorer.previewAction.onHover": false,
 
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length=120"],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true
 }
