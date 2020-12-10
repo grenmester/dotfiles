@@ -186,6 +186,5 @@ nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 
 augroup configgroup
   autocmd!
-  autocmd BufEnter Makefile setlocal noexpandtab
   autocmd BufNewFile,BufRead *.cls set syntax=tex
 augroup END
