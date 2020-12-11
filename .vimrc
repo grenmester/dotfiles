@@ -49,7 +49,7 @@ let g:strip_whitespace_confirm = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_slow = 1
 let g:tex_flavor = 'latex'
-let g:vimtex_latexmk_options = '-pdfxe -file-line-error'
+let g:vimtex_view_method = 'zathura'
 let g:coc_global_extensions = [
       \   'coc-explorer',
       \   'coc-neosnippet',
@@ -180,6 +180,10 @@ nnoremap <C-t> :UndotreeToggle<CR>
 nnoremap ,/ :nohlsearch<CR>
 " insert a newline in normal mode
 nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+
+if has('nvim')
+  nnoremap <space>e :CocCommand explorer --preset floating<CR>
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Autocommands
