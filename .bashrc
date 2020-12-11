@@ -85,7 +85,7 @@ bind "TAB":menu-complete
 # Displays a list of the matching files
 bind "set show-all-if-ambiguous on"
 
-# First tab only performs partial completion
+# First Tab only performs partial completion
 bind "set menu-complete-display-prefix on"
 
 # Makes matching case-insensitive
