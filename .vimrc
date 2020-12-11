@@ -160,10 +160,10 @@ set notimeout                   " do not time out prefix or leader keys
 set ttimeout                    " time out key code sequences
 
 if has('clipboard')
-  set clipboard=unnamed         " allow for copy and paste into MacOS clipboard
+  set clipboard=unnamedplus     " enable copy and paste into system clipboard
 endif
 if has('mouse')
-  set mouse=a                   " enable mouse
+  set mouse=a                   " enable mouse support
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
