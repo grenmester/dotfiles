@@ -23,7 +23,8 @@ Plug 'tpope/vim-surround'                 " text objects for parentheses
 
 " Language-specific
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
+Plug 'yuezk/vim-js'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
