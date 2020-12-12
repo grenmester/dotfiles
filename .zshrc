@@ -103,10 +103,10 @@ alias ds="dirs -v | head -10"
 ############################################################################
 #### Editor
 
-# Allows editting commands in zle with emacs operations
+# Allow editting commands in zle with emacs operations
 bindkey -e
 
-# Sets default editor
+# Set default editor
 if (( $+commands[nvim] )); then
   export EDITOR="nvim"
 elif (( $+commands[vim] )); then
@@ -120,16 +120,16 @@ export VISUAL=$EDITOR
 ############################################################################
 #### Glob
 
-# Makes globs case-insensitive
+# Make globs case-insensitive
 unsetopt case_glob
 
-# Makes globbing regexes case-insensitive
+# Make globbing regexes case-insensitive
 unsetopt case_match
 
-# Allows globs to match dotfiles
+# Allow globs to match dotfiles
 setopt glob_dots
 
-# Sorts numeric filenames numerically instead of lexicographically
+# Sort numeric filenames numerically instead of lexicographically
 setopt numeric_glob_sort
 
 ############################################################################
@@ -138,7 +138,7 @@ setopt numeric_glob_sort
 # History file location
 export HISTFILE=~/.zsh_history
 
-# Removes the specified commands from the history
+# Remove the specified commands from the history
 export HISTIGNORE="l:ls:[bf]g:exit:reset:clear:htop"
 
 # Number of lines saved in a session
@@ -147,27 +147,28 @@ export HISTSIZE=25000
 # Number of lines saved in the history file
 export SAVEHIST=10000
 
-# Uses OS-provided locking mechanisms for the history file if available to possibly improve performance and decrease the chance of corruption
+# Use OS-provided locking mechanisms for the history file if available to possibly improve performance and decrease the chance of corruption
 setopt hist_fcntl_lock
 
-# Prevents the current line from being saved in the history if it is the same as the previous one
+# Prevent the current line from being saved in the history if it is the same as the previous one
 setopt hist_ignore_dups
 
-# Removes superfluous blanks from the history
+# Remove superfluous blanks from the history
 setopt hist_reduce_blanks
 
-# Expands command instead of immediately executing it when using history expansion
+# Expand command instead of immediately executing it when using history expansion
 setopt hist_verify
 
 # Incrementally append new history lines to history file rather than waiting until the shell exits
 setopt inc_append_history
 
-# Disables sharing history between different zsh sessions
+# Disable sharing history between different zsh sessions
 unsetopt share_history
 
 ############################################################################
 #### Man
 
+# Colored man pages
 man() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;32m") \
@@ -183,13 +184,13 @@ man() {
 ############################################################################
 #### Miscellaneous
 
-# Uses commas in ls, du, df file size output
+# Use commas in ls, du, df file size output
 export BLOCK_SIZE="'1"
 
 # Colored output on macOS
 export CLICOLOR=1
 
-# Prints command execution time if command takes longer than 10 seconds
+# Print command execution time if command takes longer than 10 seconds
 export REPORTTIME=10
 
 # Background processes aren't killed on exit of shell
@@ -198,25 +199,25 @@ setopt auto_continue
 # Enter directory path to automatically cd into the directory
 setopt autocd
 
-# Makes cd push the old directory onto the directory stack
+# Make cd push the old directory onto the directory stack
 setopt autopushd
 
-# Attempts to correct spelling of commands in a line
+# Attempt to correct spelling of commands in a line
 setopt correct
 
-# Doesn't attempt to correct spelling of all arguments in a line
+# Don't attempt to correct spelling of all arguments in a line
 unsetopt correctall
 
-# Allows comments in the interactive shell
+# Allow comments in the interactive shell
 setopt interactive_comments
 
-# Doesn’t overwrite existing files with '>' but uses '>!' instead
+# Don’t overwrite existing files with '>' but uses '>!' instead
 setopt noclobber
 
-# Swaps the meaning of '-' and '+' when used as arguments to cd so '-' means reading from the top of the stack when accessing an entry from the directory stack
+# Swap the meaning of '-' and '+' when used as arguments to cd so '-' means reading from the top of the stack when accessing an entry from the directory stack
 setopt pushdminus
 
-# Prompts for confirmation after 'rm *'-ish commands to avoid accidentally wiping out directories
+# Prompt for confirmation after 'rm *'-ish commands to avoid accidentally wiping out directories
 setopt rm_star_wait
 
 ############################################################################
