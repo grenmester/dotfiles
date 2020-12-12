@@ -100,6 +100,25 @@ alias -g ..........="../../../../../../../../.."
 # Shows the last 10 visited directories
 alias ds="dirs -v | head -10"
 
+################################################################################
+#### Completion
+
+# Use interactive menu for ambiguous completions
+zstyle ":completion:*" menu select
+
+# Use S-Tab to go backward in the completion menu
+bindkey "^[[Z" reverse-menu-complete
+
+# Don't tab complete certain filetypes [1]
+zstyle ":completion:*:*:(emacs|gvim|nvim|vim):*" file-patterns \
+  "^*.(aux|dvi|fdb_latexmk|fls|log|pdf|synctex.gz|xdv):source-files"
+
+# Support substring completion [2]
+zstyle ":completion:*" matcher-list "" \
+  "m:{a-z\-}={A-Z\_}" \
+  "r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}" \
+  "r:|?=** m:{a-z\-}={A-Z\_}"
+
 ############################################################################
 #### Editor
 
@@ -250,3 +269,6 @@ prompt_git_info() {
 
 PROMPT='%B%F{blue}%~ %F{yellow}$(prompt_git_info)%F{default}$ %f%b'
 RPROMPT='%B%F{cyan}%n%F{default}@%F{magenta}%m %(?.%F{green}.%F{red})[%?]%f%b'
+
+# [1]: https://www.reddit.com/r/zsh/comments/5ghouo/is_there_a_way_to_have_zsh_ignore_certain_file
+# [2]: https://superuser.com/questions/415650/does-a-fuzzy-matching-mode-exist-for-the-zsh-shell
