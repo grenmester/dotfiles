@@ -78,9 +78,6 @@
 [core]
   excludesfile = ~/.gitignore
 
-[diff]
-  tool = vimdiff
-
 [grep]
   linenumber = true
 
