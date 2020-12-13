@@ -52,6 +52,7 @@ myKeys = [
   -- Programs
   ("M-<Return>", spawn myTerminal),
   ("M-<Space>", spawn "rofi -show combi"),
+  ("M-b", safeSpawnProg "google-chrome-stable"),
 
   -- Layout
   ("M-y", refresh),                         -- resize viewed windows to the correct size
@@ -83,7 +84,9 @@ myKeys = [
   -- Audio
   ("<XF86AudioMute>", spawn "amixer set Master toggle"),
   ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute"),
-  ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+  ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute"),
+  ("S-<XF86AudioLowerVolume>", spawn "amixer set Master 1%- unmute"),
+  ("S-<XF86AudioRaiseVolume>", spawn "amixer set Master 1%+ unmute")
   ] ++ [
   ("M-" ++ s ++ i, windows $ action ws) |
     (ws, i) <- zip myWorkspaces $ show <$> [1 .. ],
@@ -125,7 +128,7 @@ myLogHook h = dynamicLogWithPP def {
   ppHiddenNoWindows = xmobarColor "#93a1a1" "" . clickable,
   ppUrgent = xmobarColor "#dc322f" "" . wrap "" "#" . clickable,
   ppSep = " » ",
-  ppTitle = xmobarColor "#eee8d5" "" . shorten 75,
+  ppTitle = xmobarColor "#eee8d5" "" . shorten 80,
   ppLayout = xmobarColor "#cb4b16" "",
   ppOrder = \(ws:l:t:ex) -> [ws, l] ++ ex ++ [t],
   ppExtras = [windowCountLogger],
@@ -133,9 +136,8 @@ myLogHook h = dynamicLogWithPP def {
   } where
     clickable ws = maybe ws (\x -> xmobarAction ("xdotool key super+" ++ show
       x) "1" ws) $ lookup ws (zip myWorkspaces [1 .. ])
-    windowCount = gets $ Just . show . length . W.integrate' . W.stack .
-      W.workspace . W.current . windowset
-    windowCountLogger = (fmap . fmap) (xmobarColor "#d33682" "") windowCount
+    windowCount = show . length . W.index . windowset
+    windowCountLogger = Just . xmobarColor "#d33682" "" . windowCount <$> get
 
 --------------------------------------------------------------------------------
 ---- Main
@@ -147,13 +149,12 @@ main = do
     normalBorderColor = "#93a1a1",
     focusedBorderColor = "#268bd2",
     terminal = myTerminal,
+    layoutHook = myLayoutHook,
+    manageHook = myManageHook,
     workspaces = myWorkspaces,
     modMask = mod4Mask,
     borderWidth = 5,
+    logHook = myLogHook xmproc,
     focusFollowsMouse = True,
-    clickJustFocuses = False,
-
-    layoutHook = myLayoutHook,
-    manageHook = myManageHook,
-    logHook = myLogHook xmproc
+    clickJustFocuses = False
     } `additionalKeysP` myKeys
