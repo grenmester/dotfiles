@@ -130,12 +130,13 @@ myLogHook h = dynamicLogWithPP def {
   ppSep = " » ",
   ppTitle = xmobarColor "#eee8d5" "" . shorten 80,
   ppLayout = xmobarColor "#cb4b16" "",
-  ppOrder = \(ws:l:t:ex) -> [ws, l] ++ ex ++ [t],
+  ppOrder = \(ws:l:t:ex) -> [logo] ++ [ws, l] ++ ex ++ [t],
   ppExtras = [windowCountLogger],
   ppOutput = hPutStrLn h
   } where
     clickable ws = maybe ws (\x -> xmobarAction ("xdotool key super+" ++ show
       x) "1" ws) $ lookup ws (zip myWorkspaces [1 .. ])
+    logo = xmobarColor "#6c71c4" "" "\xe61f xmonad"
     windowCount = show . length . W.index . windowset
     windowCountLogger = Just . xmobarColor "#d33682" "" . windowCount <$> get
 

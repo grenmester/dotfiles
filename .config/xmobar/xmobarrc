@@ -1,0 +1,51 @@
+Config {
+  font = "xft:FiraCode Nerd Font:weight=bold:pixelsize=19.5",
+  bgColor = "#002b36",
+  fgColor = "#93a1a1",
+  commands = [
+    Run UnsafeStdinReader,
+    Run Memory ["--template", "\xf85a <usedratio>%"] 50,
+    Run Cpu ["--template", "\xf6c3 <total>%"] 50,
+    Run Brightness [
+      "--template", "\xfaa7 <percent>%",
+      "--",
+      "-D", "intel_backlight"
+      ] 50,
+    Run Alsa "default" "Master" [
+      "--template", "<status><volume>%",
+      "--",
+      "--on", "\xfa7d ",
+      "--off", "\xfa80 ",
+      "--onc", "#b58900",
+      "--offc", "#b58900"
+      ],
+    Run Battery [
+      "--template", "<leftipat> <left>% (<timeleft>)",
+      "--",
+      "--on-icon-pattern", "\xf583",
+      "--off-icon-pattern", "\xf57d",
+      "--idle-icon-pattern", "\xf578"
+      ] 50,
+    Run Date "\xf5ed %m/%d/%Y" "date" 50,
+    Run Date "\xf64f %a %H:%M" "time" 50
+    ],
+  sepChar = "%",
+  alignSep = "}{",
+  template = " \
+    \%UnsafeStdinReader%\
+    \}{\
+    \<fc=#d33682>%memory%</fc>\
+    \ « \
+    \<fc=#dc322f>%cpu%</fc>\
+    \ « \
+    \<fc=#cb4b16>%bright%</fc>\
+    \ « \
+    \<fc=#b58900>%alsa:default:Master%</fc>\
+    \ « \
+    \<fc=#859900>%battery%</fc>\
+    \ « \
+    \<fc=#2aa198>%date%</fc>\
+    \ « \
+    \<fc=#268bd2>%time%</fc>\
+    \ "
+  }
