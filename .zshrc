@@ -21,8 +21,10 @@ fi
 
 if (( $+commands[nvim] )); then
   alias v="nvim"
+  alias vd="nvim -d"
 elif (( $+commands[vim] )); then
   alias v="vim"
+  alias vd="vim -d"
 elif (( $+commands[vi] )); then
   alias v="vi"
 fi
