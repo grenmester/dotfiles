@@ -1,51 +1,50 @@
 Config {
-  font = "xft:FiraCode Nerd Font:weight=bold:pixelsize=19.5",
+  font = "xft:FiraCode Nerd Font:weight=bold:pixelsize=20",
+  additionalFonts = ["xft:FiraCode Nerd Font:pixelsize=20"],
   bgColor = "#002b36",
   fgColor = "#93a1a1",
   commands = [
     Run UnsafeStdinReader,
-    Run Memory ["--template", "\xf85a <usedratio>%"] 50,
-    Run Cpu ["--template", "\xf6c3 <total>%"] 50,
+    Run Memory ["--template", "<fc=#d33682>\xf85a </fc><usedratio>%"] 50,
+    Run Cpu ["--template", "<fc=#dc322f>\xf6c3 </fc><total>%"] 50,
     Run Brightness [
-      "--template", "\xfaa7 <percent>%",
+      "--template", "<fc=#cb4b16>\xfaa7 </fc><percent>%",
       "--",
       "-D", "intel_backlight"
       ] 50,
     Run Alsa "default" "Master" [
       "--template", "<status><volume>%",
       "--",
-      "--on", "\xfa7d ",
-      "--off", "\xfa80 ",
-      "--onc", "#b58900",
-      "--offc", "#b58900"
+      "--on", "<fc=#b58900>\xfa7d </fc>",
+      "--off", "<fc=#b58900>\xfa80 </fc>"
       ],
     Run Battery [
-      "--template", "<leftipat> <left>% (<timeleft>)",
+      "--template", "<leftipat><left>% (<timeleft>)",
       "--",
-      "--on-icon-pattern", "\xf583",
-      "--off-icon-pattern", "\xf57d",
-      "--idle-icon-pattern", "\xf578"
+      "--on-icon-pattern", "<fc=#859900>\xf583 </fc>",
+      "--off-icon-pattern", "<fc=#859900>\xf57d </fc>",
+      "--idle-icon-pattern", "<fc=#859900>\xf578 </fc>"
       ] 50,
-    Run Date "\xf5ed %m/%d/%Y" "date" 50,
-    Run Date "\xf64f %a %H:%M" "time" 50
+    Run Date "<fc=#2aa198>\xf5ed </fc>%m/%d/%Y" "date" 50,
+    Run Date "<fc=#268bd2>\xf64f </fc>%a %H:%M" "time" 50
     ],
   sepChar = "%",
   alignSep = "}{",
   template = " \
     \%UnsafeStdinReader%\
     \}{\
-    \<fc=#d33682>%memory%</fc>\
+    \<fn=1>%memory%</fn>\
     \ « \
-    \<fc=#dc322f>%cpu%</fc>\
+    \<fn=1>%cpu%</fn>\
     \ « \
-    \<fc=#cb4b16>%bright%</fc>\
+    \<fn=1>%bright%</fn>\
     \ « \
-    \<fc=#b58900>%alsa:default:Master%</fc>\
+    \<fn=1>%alsa:default:Master%</fn>\
     \ « \
-    \<fc=#859900>%battery%</fc>\
+    \<fn=1>%battery%</fn>\
     \ « \
-    \<fc=#2aa198>%date%</fc>\
+    \<fn=1>%date%</fn>\
     \ « \
-    \<fc=#268bd2>%time%</fc>\
+    \<fn=1>%time%</fn>\
     \ "
   }
