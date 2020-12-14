@@ -1,0 +1,50 @@
+[global]
+  follow = "mouse"                  # show messages on monitor with mouse
+  geometry = "400x5-20+50"          # set placement and boundaries of messages
+  separator_height = 5
+  padding = 10
+  horizontal_padding = 10
+  frame_width = 5
+  separator_color = "frame"
+  idle_threshold = 60               # don't remove messages if the user is idle
+  font = "FiraCode Nerd Font 14"
+  markup = "full"                   # enable markup in messages
+  format = "<i>%a</i>\n<b>%s</b>\n%b %p"
+  vertical_alignment = "top"        # icon vertical alignment
+  show_age_threshold = 60           # show message age after a threshold
+  word_wrap = true                  # wrap lines instead of truncating
+  icon_position = "left"
+  max_icon_size = 48                # scale larger icons down to this size
+  icon_path = "/usr/share/icons/Papirus/48x48/emblems/"
+  dmenu = "rofi -dmenu -p dunst"
+  browser = "google-chrome-stable"
+  mouse_left_click = "do_action, close_current"
+  mouse_middle_click = "close_all"
+  mouse_right_click = "close_current"
+
+[shortcuts]
+  close = "ctrl+space"
+  close_all = "ctrl+shift+space"
+  history = "ctrl+grave"
+  context = "ctrl+shift+period"
+
+[urgency_low]
+  background = "#073642"
+  foreground = "#93a1a1"
+  frame_color = "#859900"
+  timeout = 10
+  icon = "emblem-information"
+
+[urgency_normal]
+  background = "#073642"
+  foreground = "#93a1a1"
+  frame_color = "#268bd2"
+  timeout = 10
+  icon = "emblem-warning"
+
+[urgency_critical]
+  background = "#073642"
+  foreground = "#93a1a1"
+  frame_color = "#dc322f"
+  timeout = 0
+  icon = "emblem-error"
