@@ -92,7 +92,7 @@ myKeys = [
   ("S-<XF86AudioRaiseVolume>", spawn "amixer set Master 1%+ unmute")
   ] ++ [
   ("M-" ++ s ++ i, windows $ action ws) |
-    (ws, i) <- zip myWorkspaces $ show <$> [1 .. ],
+    (ws, i) <- zip myWorkspaces $ show <$> [1 :: Int .. ],
     (s, action) <- [("", W.greedyView), ("S-", W.shift)]
   ]
 
@@ -111,7 +111,7 @@ myLayoutHook = avoidStruts $ tall ||| threeCol ||| full ||| stack
       Mirror $
       Tall 3 0.03 0.5
     full = renamed [Replace "full"] $
-      mySpacing $
+      mySpacing
       Full
     stack = renamed [Replace "stack"] $
       mySpacing $
@@ -139,7 +139,7 @@ myLogHook xmprocs = dynamicLogWithPP def {
   ppOutput = \s -> mapM_ (`hPutStrLn` s) xmprocs
   } where
     clickable ws = maybe ws (\x -> xmobarAction ("xdotool key super+" ++ show
-      x) "1" ws) $ lookup ws (zip myWorkspaces [1 .. ])
+      x) "1" ws) $ lookup ws (zip myWorkspaces [1 :: Int .. ])
     logo = xmobarColor "#6c71c4" "" "\xe61f xmonad"
     windowCount = show . length . W.index . windowset
     windowCountLogger = Just . xmobarColor "#d33682" "" . windowCount <$> get
