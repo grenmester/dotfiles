@@ -40,6 +40,9 @@ myTerminal = "alacritty"
 myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+numMonitors :: Int
+numMonitors = 3
+
 --------------------------------------------------------------------------------
 ---- Keybindings
 
@@ -96,10 +99,10 @@ myKeys = [
 --------------------------------------------------------------------------------
 ---- Hooks
 
-myLayoutHook = avoidStruts $ tiled ||| threeCol ||| full ||| stack
+myLayoutHook = avoidStruts $ tall ||| threeCol ||| full ||| stack
   where
     mySpacing = spacingRaw False (Border 0 0 0 0) True (Border 0 0 0 0) True
-    tiled = renamed [Replace "tiled"] $
+    tall = renamed [Replace "tall"] $
       mySpacing $
       Tall 1 0.03 0.5
     threeCol = renamed [Replace "threeCol"] $
@@ -121,9 +124,10 @@ myManageHook = composeAll [
   title =? "Event Tester" --> doFloat
   ]
 
-myLogHook :: Handle -> X ()
-myLogHook h = dynamicLogWithPP def {
+myLogHook :: [Handle] -> X ()
+myLogHook xmprocs = dynamicLogWithPP def {
   ppCurrent = xmobarColor "#268bd2" "" . wrap "" "*",
+  ppVisible = xmobarColor "#2aa198" "" . wrap "" "*" . clickable,
   ppHidden = xmobarColor "#859900" "" . wrap "" "-" . clickable,
   ppHiddenNoWindows = xmobarColor "#93a1a1" "" . clickable,
   ppUrgent = xmobarColor "#dc322f" "" . wrap "" "#" . clickable,
@@ -132,7 +136,7 @@ myLogHook h = dynamicLogWithPP def {
   ppLayout = xmobarColor "#cb4b16" "",
   ppOrder = \(ws:l:t:ex) -> [logo] ++ [ws, l] ++ ex ++ [t],
   ppExtras = [windowCountLogger],
-  ppOutput = hPutStrLn h
+  ppOutput = \s -> mapM_ (`hPutStrLn` s) xmprocs
   } where
     clickable ws = maybe ws (\x -> xmobarAction ("xdotool key super+" ++ show
       x) "1" ws) $ lookup ws (zip myWorkspaces [1 .. ])
@@ -145,7 +149,8 @@ myLogHook h = dynamicLogWithPP def {
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "xmobar"
+  xmprocs <- mapM
+    (\x -> spawnPipe $ "xmobar -x " ++ show x) [0 .. numMonitors-1]
   xmonad $ docks def {
     normalBorderColor = "#93a1a1",
     focusedBorderColor = "#268bd2",
@@ -155,7 +160,7 @@ main = do
     workspaces = myWorkspaces,
     modMask = mod4Mask,
     borderWidth = 5,
-    logHook = myLogHook xmproc,
+    logHook = myLogHook xmprocs,
     focusFollowsMouse = True,
     clickJustFocuses = False
     } `additionalKeysP` myKeys
