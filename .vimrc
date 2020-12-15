@@ -12,6 +12,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
 Plug 'jreybert/vimagit'                   " add git workflow inside vim
 Plug 'junegunn/vim-peekaboo'              " show values of registers
 Plug 'kshenoy/vim-signature'              " show marks in sign column
+Plug 'lambdalisue/nerdfont.vim'           " nerd font support
 Plug 'majutsushi/tagbar'                  " generate and browse tags
 Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
 Plug 'mbbill/undotree'                    " undo history visualizer
@@ -85,6 +86,8 @@ function! LightlineTabRight()
   return reverse(lightline#tabs())
 endfunction
 
+let g:lightline#bufferline#clickable = 1
+let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#show_number = 1
 
 let g:lightline = {
@@ -103,6 +106,9 @@ let g:lightline = {
       \   'component_function': {
       \     'cocstatus': 'coc#status',
       \     'currentfunction': 'CocCurrentFunction',
+      \   },
+      \   'component_raw': {
+      \     'buffers': 1,
       \   },
       \   'component_type': {
       \     'buffers': 'tabsel',
@@ -182,6 +188,18 @@ nnoremap <C-t> :UndotreeToggle<CR>
 nnoremap ,/ :nohlsearch<CR>
 " insert a newline in normal mode
 nnoremap <silent><C-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+
+" switch to buffers by ordinal number
+nmap <leader>1 <Plug>lightline#bufferline#go(1)
+nmap <leader>2 <Plug>lightline#bufferline#go(2)
+nmap <leader>3 <Plug>lightline#bufferline#go(3)
+nmap <leader>4 <Plug>lightline#bufferline#go(4)
+nmap <leader>5 <Plug>lightline#bufferline#go(5)
+nmap <leader>6 <Plug>lightline#bufferline#go(6)
+nmap <leader>7 <Plug>lightline#bufferline#go(7)
+nmap <leader>8 <Plug>lightline#bufferline#go(8)
+nmap <leader>9 <Plug>lightline#bufferline#go(9)
+nmap <leader>0 <Plug>lightline#bufferline#go(10)
 
 if has('nvim')
   nnoremap <space>e :CocCommand explorer --preset floating<CR>
