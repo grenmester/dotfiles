@@ -1,7 +1,7 @@
 configuration {
   font: "FiraCode Nerd Font 16";
-  modi: [window, drun, ssh, combi];
-  combi-modi: [window, drun, ssh];
+  modi: [window, drun, ssh, run, combi];
+  combi-modi: [window, drun, ssh, run];
   show-icons: true;
   icon-theme: "Papirus";
   terminal: "alacritty";
@@ -54,7 +54,11 @@ configuration {
 }
 
 #num-rows {
-  padding: 2px 0px 2px 0px;
+  padding: 2px 4px 2px 0px;
+}
+
+#message {
+  padding: 4px 10px 4px 10px;
 }
 
 #listview {
@@ -65,18 +69,34 @@ configuration {
   padding: 2px 0px 2px 10px;
 }
 
+#element.normal.active {
+  text-color: @active-color;
+}
+
+#element.normal.urgent {
+  text-color: @urgent-color;
+}
+
+#element.alternate.active {
+  text-color: @active-color;
+}
+
+#element.alternate.urgent {
+  text-color: @urgent-color;
+}
+
 #element.selected.normal {
   background-color: @selected-color;
   text-color: @base-color;
 }
 
-#element.selected.urgent {
-  background-color: @urgent-color;
+#element.selected.active {
+  background-color: @active-color;
   text-color: @text-base-color;
 }
 
-#element.selected.active {
-  background-color: @active-color;
+#element.selected.urgent {
+  background-color: @urgent-color;
   text-color: @text-base-color;
 }
 
