@@ -7,8 +7,84 @@ configuration {
   terminal: "alacritty";
 }
 
-@theme "solarized"
+* {
+  base-color: #073642;
+  text-base-color: #93a1a1;
+  border-color: #93a1a1;
+  selected-color: #586e75;
+  active-color: #268bd2;
+  urgent-color: #dc322f;
 
-window {
-  border: 5;
+  background-color: @base-color;
+  text-color: @text-base-color;
+}
+
+#window {
+  background-color: @border-color;
+  padding: 5;
+}
+
+#inputbar {
+  children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows];
+  padding: 4px 4px 2px 4px;
+}
+
+#prompt {
+  padding: 2px 0px 2px 4px;
+}
+
+#textbox-prompt-colon {
+  expand: false;
+  padding: 2px 2px 2px 0px;
+  str: ":";
+}
+
+#entry {
+  padding: 2px 0px 2px 4px;
+}
+
+#num-filtered-rows {
+  padding: 2px 0px 2px 4px;
+}
+
+#textbox-num-sep {
+  expand: false;
+  padding: 2px 0px 2px 0px;
+  str: "/";
+}
+
+#num-rows {
+  padding: 2px 0px 2px 0px;
+}
+
+#listview {
+  scrollbar: true;
+}
+
+#element {
+  padding: 2px 0px 2px 10px;
+}
+
+#element.selected.normal {
+  background-color: @selected-color;
+  text-color: @base-color;
+}
+
+#element.selected.urgent {
+  background-color: @urgent-color;
+  text-color: @text-base-color;
+}
+
+#element.selected.active {
+  background-color: @active-color;
+  text-color: @text-base-color;
+}
+
+#scrollbar {
+  handle-color: @border-color;
+}
+
+#button.selected {
+  background-color: @selected-color;
+  text-color: @text-base-color;
 }
