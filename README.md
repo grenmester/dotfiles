@@ -28,7 +28,7 @@ when creating personal configurations.
   * Font: [FiraCode Nerd Font][firacode]
   * Colorscheme: [Solarized][solarized]
   * GTK Theme: [Numix Solarized][solarized-gtk]
-  * Icons: [Papirus][papirus]
+  * Icon Theme: [Papirus][papirus]
 
 ## Features
 
@@ -167,7 +167,7 @@ Run `<prefix>-I` to install plugins and `<prefix>-U` to update plugins.
 * Dunst: `pacman -S dunst`
 * Font: `yay -S nerd-fonts-fira-code`
 * GTK Theme: `yay -S gtk-theme-numix-solarized`
-* Icons: `pacman -S papirus-icon-theme`
+* Icon Theme: `pacman -S papirus-icon-theme`
 
 Other utilities that I use but don't have dotfiles for in this repository and
 might be worth mentioning include `emacs` (text editor), `picom` (compositor),

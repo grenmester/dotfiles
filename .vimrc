@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'lifepillar/vim-solarized8'
 
 " General
-Plug 'itchyny/lightline.vim'              " improved status line
+Plug 'itchyny/lightline.vim'              " improved status bar
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
 Plug 'jreybert/vimagit'                   " add git workflow inside vim
 Plug 'junegunn/vim-peekaboo'              " show values of registers
