@@ -21,7 +21,7 @@ when creating personal configurations.
 * Linux
   * [XMonad][xmonad] (`~/.xmonad/xmonad.hs`) - tiling window manager
   * [Xmobar][xmobar] (`~/.config/xmobar/xmobarrc`) - status bar
-  * [Alacritty][alacritty] (`~/.config/alacritty/alacritty.yml`) - terminal emulator
+  * [Kitty][kitty] (`~/.config/kitty/kitty.conf`) - terminal emulator
   * [Rofi][rofi] (`~/.config/rofi/config.rasi`) - application launcher
   * [Dunst][dunst] (`~/.config/dunst/dunstrc`) - notification daemon
 * Miscellaneous
@@ -77,8 +77,10 @@ when creating personal configurations.
   * displays `xmonad` information such as workspaces, layout, window count, and
     window title
   * uses monitor plugins to display information such as RAM/CPU usage and more
-* Alacritty
-  * fastest, cross-platform, GPU-accelerated terminal emulator
+* Kitty
+  * fast, cross-platform, GPU-accelerated terminal emulator
+  * default ligature support
+  * replaces `xterm`
 * Rofi
   * drop-in `dmenu` replacement with additional features
   * also functions as window switcher and `ssh` launcher
@@ -121,20 +123,15 @@ For backwards compatibility, we first set up `vim` then `neovim`.
 Run `:PlugInstall` to install plugins, `:PlugUpdate` to update plugins, and
 `:PlugUpgrade` to update `vim-plug`.
 
-    pacman -S neovim
+    pacman -S neovim python-neovim xclip
 
     # symlink config directories
     mkdir -p ~/.config
     ln -s ~/.vim ~/.config/nvim
     ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-    # install providers
-    pip install pynvim
-    gem install neovim
-    pacman -S yarn
-    yarn global add neovim
-
-Run `:PlugInstall` and `:UpdateRemotePlugins` to install `neovim` plugins.
+Run `:checkhealth` and follow the instructions to install the providers. Run
+`:PlugInstall` and `:UpdateRemotePlugins` to install `neovim` plugins.
 
 Additional steps for plugins:
 
@@ -142,11 +139,11 @@ Additional steps for plugins:
     pacman -S nodejs
 
     # vimtex
-    pacman -S texlive-most zathura zathura-pdf-mupdf
+    pacman -S texlive-most zathura zathura-pdf-mupdf xdotool python-pip
     pip install neovim-remote
 
     # vim-instant-markdown
-    pacman -S curl nodejs xdg-utils
+    pacman -S xdg-utils
     yarn global add instant-markdown-d
 
 ### Tmux
@@ -162,18 +159,24 @@ Run `<prefix>-I` to install plugins and `<prefix>-U` to update plugins.
 * Git: `pacman -S git`
 * XMonad: `pacman -S xmonad xmonad-contrib`
 * Xmobar: `pacman -S xmobar`
-* Alacritty: `pacman -S alacritty`
-* Rofi: `pacman -S rofi`
-* Dunst: `pacman -S dunst`
+* Kitty: `pacman -S kitty xterm`
+* Rofi: `pacman -S rofi dmenu`
+* Dunst: `pacman -S dunst libnotify`
 * Font: `yay -S nerd-fonts-fira-code`
 * GTK Theme: `yay -S gtk-theme-numix-solarized`
 * Icon Theme: `pacman -S papirus-icon-theme`
 
+Note that `xterm` and `dmenu` are not required but some programs may use them
+as default programs.
+
 Other utilities that I use but don't have dotfiles for in this repository and
 might be worth mentioning include `emacs` (text editor), `picom` (compositor),
-`vifm` (file manager), and `sxiv` (image viewer).
+`vifm` (file manager), `sxiv` (image viewer), and `nitrogen` (wallpaper
+setter).
 
-More utilities that I use include `ripgrep`, `htop`, and `neofetch`.
+More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
+`neofetch`, and `arandr`. Some fun ones include `gotop`, `pipes.sh`, and
+`asciiquarium`.
 
 ## Additional Remarks
 
@@ -202,14 +205,14 @@ requests][prs] are also welcome.
 [git]: https://git-scm.com
 [xmonad]: https://xmonad.org
 [xmobar]: https://xmobar.org
-[alacritty]: https://github.com/alacritty/alacritty
+[kitty]: https://github.com/kovidgoyal/kitty
 [rofi]: https://github.com/davatorium/rofi
 [dunst]: https://dunst-project.org
 
 [firacode]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
 [solarized]: https://ethanschoonover.com/solarized
 [solarized-gtk]: https://github.com/Ferdi265/numix-solarized-gtk-theme
-[papirus]: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
+[papirus]: https://git.io/papirus-icon-theme
 
 [bare-repo]: https://www.atlassian.com/git/tutorials/dotfiles
 [issues]: https://github.com/grenmester/dotfiles/issues
