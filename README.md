@@ -30,6 +30,20 @@ when creating personal configurations.
   * GTK Theme: [Numix Solarized][solarized-gtk]
   * Icon Theme: [Papirus][papirus]
 
+### Screenshots
+
+![First Screenshot](img/screenshot1.png)
+
+Here we see `xmonad` in tiling mode with window gaps, `xmobar` on top, and five
+`kitty` windows on `zsh` with transparency running `neofetch`, `gotop`,
+`asciiquarium`, `cmatrix`, and `pipes.sh`.
+
+![Second Screenshot](img/screenshot2.png)
+
+Here we see `xmonad` with floating windows containing `emacs`, `lxappearance`,
+`dunst`, `rofi`, `vifm`, and `kitty` containing a `neovim` instance inside a
+`tmux` session.
+
 ## Features
 
 * Bash
@@ -175,8 +189,8 @@ might be worth mentioning include `emacs` (text editor), `picom` (compositor),
 setter).
 
 More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
-`neofetch`, and `arandr`. Some fun ones include `gotop`, `pipes.sh`, and
-`asciiquarium`.
+`neofetch`, and `arandr`. Some fun ones include `gotop`, `cmatrix`, `pipes.sh`,
+and `asciiquarium`.
 
 ## Additional Remarks
 
