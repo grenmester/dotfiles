@@ -36,8 +36,6 @@ Plug 'maralla/vim-toml-enhance'
 " Neovim-specific
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
-  Plug 'Shougo/neosnippet.vim'                    " snippet support
-  Plug 'Shougo/neosnippet-snippets'               " common snippets
 endif
 
 call plug#end()
@@ -55,7 +53,7 @@ let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
 let g:coc_global_extensions = [
       \   'coc-explorer',
-      \   'coc-neosnippet',
+      \   'coc-snippets',
       \   'coc-emmet',
       \   'coc-html',
       \   'coc-css',
@@ -89,7 +87,6 @@ endfunction
 let g:lightline#bufferline#clickable = 1
 let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#show_number = 1
-
 let g:lightline = {
       \   'active': {
       \     'left': [['bufnum', 'mode', 'paste'],
@@ -123,6 +120,7 @@ let g:lightline = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" UI Layout
 
+set signcolumn=yes              " always show the sign column
 set relativenumber              " set relative line numbers
 set number                      " display absolute line number on current line
 set showcmd                     " show command in bottom bar
@@ -183,6 +181,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
+" toggle undo tree window
 nnoremap <C-t> :UndotreeToggle<CR>
 " stop highlighting search text
 nnoremap ,/ :nohlsearch<CR>
@@ -202,6 +201,35 @@ nmap <leader>9 <Plug>lightline#bufferline#go(9)
 nmap <leader>0 <Plug>lightline#bufferline#go(10)
 
 if has('nvim')
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . ' ' . expand('<cword>')
+    endif
+  endfunction
+
+  " organize imports of the current buffer
+  command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+  " show documentation in preview window
+  nnoremap K :call <SID>show_documentation()<CR>
+  nmap <leader>rn <Plug>(coc-rename)
+  nmap [g <Plug>(coc-diagnostic-prev)
+  nmap ]g <Plug>(coc-diagnostic-next)
+  nmap gd <Plug>(coc-definition)
+  nmap gi <Plug>(coc-implementation)
+  nmap gr <Plug>(coc-references)
+  nmap gy <Plug>(coc-type-definition)
+
+  " trigger completion menu
+  inoremap <expr> <C-space> coc#refresh()
+  " select completion menu item
+  inoremap <expr> <CR> pumvisible() ? coc#_select_confirm()
+        \: "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+
+  " open coc-explorer in floating mode
   nnoremap <space>e :CocCommand explorer --preset floating<CR>
 endif
 
