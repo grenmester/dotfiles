@@ -13,11 +13,14 @@
   cefx = clean --force -x
   cl = clone
   co = checkout
+  cob = checkout -b
   d = diff
   dc = diff --cached
   pl = pull
   ps = push
   psf = push --force
+  psu = push --set-upstream
+  psuo = push --set-upstream origin
   psuom = push --set-upstream origin master
   r = reset
   rh = reset --hard
@@ -86,7 +89,3 @@
 
 [push]
   default = simple
-
-[user]
-  name = Jacky Lee
-  email = dr.jackylee@gmail.com
