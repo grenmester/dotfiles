@@ -48,6 +48,7 @@ let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_slow = 1
+let g:instant_markdown_mathjax = 1
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
