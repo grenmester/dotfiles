@@ -119,12 +119,15 @@ work, assuming you have `brew` installed.
 After reloading the shell, run `zinit self-update` to update `zinit` and `zinit
 update --all` to update plugins.
 
+To set `zsh` as your default shell, run ``chsh -s `which zsh` `` and reset your
+computer.
+
 Optional utilities:
 
     pacman -S exa hub
 
-To set `zsh` as your default shell, run ``chsh -s `which zsh` `` and reset your
-computer.
+You may want to set up a personal access token so `hub` can access the GitHub
+API.
 
 ### Neovim
 
@@ -170,7 +173,7 @@ Run `<prefix>-I` to install plugins and `<prefix>-U` to update plugins.
 ### Others
 
 * Bash: `pacman -S bash`
-* Git: `pacman -S git`
+* Git: `pacman -S git openssh`
 * XMonad: `pacman -S xmonad xmonad-contrib`
 * Xmobar: `pacman -S xmobar`
 * Kitty: `pacman -S kitty xterm`
@@ -181,12 +184,13 @@ Run `<prefix>-I` to install plugins and `<prefix>-U` to update plugins.
 * Icon Theme: `pacman -S papirus-icon-theme`
 
 Note that `xterm` and `dmenu` are not required but some programs may use them
-as default programs.
+as default programs. If you want to use `ssh` keys for `git`, you will need
+`openssh`.
 
 Other utilities that I use but don't have dotfiles for in this repository and
 might be worth mentioning include `emacs` (text editor), `picom` (compositor),
-`vifm` (file manager), `sxiv` (image viewer), and `nitrogen` (wallpaper
-setter).
+`vifm` (file manager), `sxiv` (image viewer), `nitrogen` (wallpaper setter),
+and `pass` (password manager).
 
 More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
 `neofetch`, and `arandr`. Some fun ones include `gotop`, `cmatrix`, `pipes.sh`,

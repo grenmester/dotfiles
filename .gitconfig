@@ -30,6 +30,7 @@
   rmc = rm --cached
   s = status
   st = stash
+  stl = stash list
   stp = stash pop
 
   ;; hub aliases
