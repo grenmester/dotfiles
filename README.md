@@ -168,7 +168,7 @@ Additional steps for plugins:
     pacman -S tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-Run `<prefix>-I` to install plugins and `<prefix>-U` to update plugins.
+Run `<prefix> I` to install plugins and `<prefix> U` to update plugins.
 
 ### Others
 
@@ -196,16 +196,51 @@ More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
 `neofetch`, and `arandr`. Some fun ones include `gotop`, `cmatrix`, `pipes.sh`,
 and `asciiquarium`.
 
+## Command/Keybinding Reference
+
+### Pacman/Yay Commands
+
+    pacman -Syu               # upgrade repo packages
+    pacman -S <package-name>  # install package from the Arch repositories
+    yay                       # upgrade AUR packages
+    yay -S <package-name>     # install package from the AUR
+
+### Zsh Commands
+
+    zinit self-update     # update zinit
+    zinit update --all    # update zsh plugins
+    zinit delete --clean  # delete removed zinit plugins
+
+### Neovim Commands
+
+    :PlugUpgrade          # update vim-plug
+    :PlugInstall          # install vim plugins
+    :PlugUpdate           # update vim plugins
+    :PlugClean            # delete removed vim plugins
+    :UpdateRemotePlugins  # update remote neovim plugins
+    :checkhealth          # run neovim healthchecks
+
+### Tmux Keybindings
+
+    <prefix> I    # install tmux plugins
+    <prefix> U    # update tmux plugins
+    <prefix> M-u  # delete removed tmux plugins
+    <prefix> C-s  # save tmux resurrect session
+    <prefix> C-r  # restore tmux resurrect session
+
 ## Additional Remarks
 
-This repository is meant to simply be a collection of dotfiles, not a dotfile
-management system. As such, there is no installation script although I'm sure
-it wouldn't take long to write one. For an elegant way to store dotfiles,
-consider using a [bare repository][bare-repo]. Users are expected to manually
-inspect and customize each dotfile. For this reason, specific aliases or
-keybindings are not explicitly mentioned in the descriptions. Furthermore as a
-matter of personal taste, excellent utilities worth mentioning such as
-`oh-my-zsh`, `fzf`, and `pywal` are not included to keep things simple.
+This repository is meant to simply be a collection of dotfiles for people to
+look through and pick out things they like for their own dotfiles. It is not
+meant to be a dotfile management system or a strict configuration that I
+recommend everyone to follow. As such, there is no installation script since
+that would defeat the purpose and intent of this repository. For an elegant way
+to store dotfiles, consider using a [bare repository][bare-repo]. Users are
+expected to manually inspect and customize each dotfile. For this reason,
+specific aliases or keybindings are not explicitly mentioned in the
+descriptions. Furthermore as a matter of personal taste, excellent utilities
+worth mentioning such as `oh-my-zsh`, `fzf`, and `pywal` are not included to
+keep things simple.
 
 ## Contributing
 

@@ -227,7 +227,7 @@ if has('nvim')
   " trigger completion menu
   inoremap <expr> <C-space> coc#refresh()
   " select completion menu item
-  inoremap <expr> <CR> pumvisible() ? coc#_select_confirm()
+  inoremap <expr><silent> <CR> pumvisible() ? coc#_select_confirm()
         \: "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
   " open coc-explorer in floating mode
