@@ -97,8 +97,9 @@ Here we see `xmonad` with floating windows containing `emacs`, `lxappearance`,
   * replaces `xterm`
 * Rofi
   * drop-in `dmenu` replacement with additional features
-  * also functions as window switcher and `ssh` launcher
+  * also functions as a window switcher and `ssh` launcher
   * run in `combi` mode to allow several modes to be merged into one list
+  * includes a calculator mode and an emoji mode
 * Dunst
   * lightweight replacement for the notification-daemons provided by most
     desktop environments
@@ -177,7 +178,7 @@ Run `<prefix> I` to install plugins and `<prefix> U` to update plugins.
 * XMonad: `pacman -S xmonad xmonad-contrib`
 * Xmobar: `pacman -S xmobar`
 * Kitty: `pacman -S kitty xterm`
-* Rofi: `pacman -S rofi dmenu`
+* Rofi: `pacman -S rofi rofi-calc dmenu && yay -S rofi-emoji`
 * Dunst: `pacman -S dunst libnotify`
 * Font: `yay -S nerd-fonts-fira-code`
 * GTK Theme: `yay -S gtk-theme-numix-solarized`
@@ -185,7 +186,8 @@ Run `<prefix> I` to install plugins and `<prefix> U` to update plugins.
 
 Note that `xterm` and `dmenu` are not required but some programs may use them
 as default programs. If you want to use `ssh` keys for `git`, you will need
-`openssh`.
+`openssh`. The `rofi-calc` and `rofi-emoji` packages are plugins that add modes
+to `rofi`.
 
 Other utilities that I use but don't have dotfiles for in this repository and
 might be worth mentioning include `emacs` (text editor), `picom` (compositor),
@@ -193,8 +195,8 @@ might be worth mentioning include `emacs` (text editor), `picom` (compositor),
 and `pass` (password manager).
 
 More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
-`neofetch`, and `arandr`. Some fun ones include `gotop`, `cmatrix`, `pipes.sh`,
-and `asciiquarium`.
+`neofetch`, `rofi-pass`, and `arandr`. Some fun ones include `gotop`,
+`cmatrix`, `pipes.sh`, and `asciiquarium`.
 
 ## Command/Keybinding Reference
 

@@ -1,7 +1,7 @@
 configuration {
   font: "FiraCode Nerd Font 16";
-  modi: [window, drun, ssh, run, combi];
-  combi-modi: [window, drun, ssh, run];
+  modi: [drun, window, ssh, run, calc, emoji, combi];
+  combi-modi: [drun, window, ssh, run, calc, emoji];
   show-icons: true;
   icon-theme: "Papirus";
   terminal: "kitty";

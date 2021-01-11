@@ -15,6 +15,7 @@ import XMonad.Hooks.DynamicLog (
   xmobarAction,
   xmobarColor
   )
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (ToggleStruts(..), avoidStruts, docks)
 import XMonad.Layout.LimitWindows (limitWindows)
 import XMonad.Layout.Renamed (Rename(Replace), renamed)
@@ -41,7 +42,7 @@ myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 numMonitors :: Int
-numMonitors = 3
+numMonitors = 2
 
 --------------------------------------------------------------------------------
 ---- Keybindings
@@ -151,7 +152,7 @@ main :: IO ()
 main = do
   xmprocs <- mapM
     (\x -> spawnPipe $ "xmobar -x " ++ show x) [0 .. numMonitors-1]
-  xmonad $ docks def {
+  xmonad $ docks $ ewmh def {
     normalBorderColor = "#93a1a1",
     focusedBorderColor = "#268bd2",
     terminal = myTerminal,
