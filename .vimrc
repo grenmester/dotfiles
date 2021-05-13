@@ -17,6 +17,7 @@ Plug 'majutsushi/tagbar'                  " generate and browse tags
 Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
 Plug 'mbbill/undotree'                    " undo history visualizer
 Plug 'mengelbrecht/lightline-bufferline'  " show buffers in tabline
+Plug 'niklaas/lightline-gitdiff'          " show git information in tabline
 Plug 'mhinz/vim-signify'                  " show VCS information in sign column
 Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
 Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
@@ -30,6 +31,7 @@ Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'keith/tmux.vim'
+Plug 'mechatroner/rainbow_csv'
 Plug 'cespare/vim-toml'
 Plug 'maralla/vim-toml-enhance'
 
@@ -62,7 +64,7 @@ let g:coc_global_extensions = [
       \   'coc-prettier',
       \   'coc-markdownlint',
       \   'coc-vimtex',
-      \   'coc-python',
+      \   'coc-pyright',
       \   'coc-vimlsp',
       \   'coc-json',
       \ ]
@@ -88,10 +90,14 @@ endfunction
 let g:lightline#bufferline#clickable = 1
 let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#show_number = 1
+let g:lightline#gitdiff#indicator_added = '+:'
+let g:lightline#gitdiff#indicator_deleted = '_:'
+let g:lightline#gitdiff#indicator_modified = '!:'
 let g:lightline = {
       \   'active': {
       \     'left': [['bufnum', 'mode', 'paste'],
-      \              ['cocstatus', 'currentfunction', 'readonly', 'filename', 'modified']],
+      \              ['cocstatus', 'currentfunction', 'readonly', 'filename', 'modified'],
+      \              ['gitdiff']],
       \     'right': [['lineinfo'],
       \               ['percent'],
       \               ['filetype']],
@@ -99,6 +105,7 @@ let g:lightline = {
       \   'colorscheme': 'solarized',
       \   'component_expand': {
       \     'buffers': 'lightline#bufferline#buffers',
+      \     'gitdiff': 'lightline#gitdiff#get',
       \     'rtabs': 'LightlineTabRight',
       \   },
       \   'component_function': {
