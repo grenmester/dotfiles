@@ -57,6 +57,7 @@ myKeys = [
   ("M-<Return>", spawn myTerminal),
   ("M-<Space>", spawn "rofi -show combi"),
   ("M-b", safeSpawnProg "google-chrome-stable"),
+  ("M-s", safeSpawnProg "slack"),
 
   -- Layout
   ("M-y", refresh),                         -- resize viewed windows to the correct size
