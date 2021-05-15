@@ -1,6 +1,6 @@
 Config {
-  font = "xft:FiraCode Nerd Font:weight=bold:pixelsize=20",
-  additionalFonts = ["xft:FiraCode Nerd Font:pixelsize=20"],
+  font = "xft:FiraCode Nerd Font:bold:pixelsize=20,Noto Sans Mono CJK SC:bold:pixelsize=18",
+  additionalFonts = ["xft:FiraCode Nerd Font:pixelsize=20,Noto Sans Mono CJK SC:pixelsize=18"],
   bgColor = "#002b36",
   fgColor = "#93a1a1",
   commands = [
