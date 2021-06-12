@@ -133,6 +133,18 @@ used to change the GTK theme, icon theme, and more.
     yay -S gtk-theme-numix-solarized
     pacman -S papirus-icon-theme
 
+## Fonts
+
+You may also want some additional fonts for use in other applications that have
+support for CJK characters and emojis. The [Noto Fonts][noto] are a font family
+that tries to support all languages with a unified appearance.
+
+    pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+You can check whether the fonts are installed properly in the terminal with
+`curl` or in the browser by using the [UTF-8 sample file][utf-8] and [emoji
+sample file][emoji].
+
 [arch]: https://www.archlinux.org
 [arch-install]: https://wiki.archlinux.org/index.php/installation_guide
 [boot-loader]: https://wiki.archlinux.org/index.php/Arch_boot_process
@@ -154,3 +166,6 @@ used to change the GTK theme, icon theme, and more.
 [pulseaudio]: https://www.freedesktop.org/wiki/Software/PulseAudio
 [gtk]: https://www.gtk.org
 [lxappearance]: https://wiki.lxde.org/en/LXAppearance
+[noto]: https://www.google.com/get/noto
+[utf-8]: https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
+[emoji]: https://unicode.org/Public/emoji/13.0/emoji-test.txt
