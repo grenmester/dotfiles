@@ -15,8 +15,13 @@ import XMonad.Hooks.DynamicLog (
   xmobarAction,
   xmobarColor
   )
-import XMonad.Hooks.EwmhDesktops (ewmh)
-import XMonad.Hooks.ManageDocks (ToggleStruts(..), avoidStruts, docks)
+import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import XMonad.Hooks.ManageDocks (
+  ToggleStruts(..),
+  avoidStruts,
+  docks,
+  docksEventHook
+  )
 import XMonad.Layout.LimitWindows (limitWindows)
 import XMonad.Layout.Renamed (Rename(Replace), renamed)
 import XMonad.Layout.Spacing (
@@ -159,6 +164,7 @@ main = do
     terminal = myTerminal,
     layoutHook = myLayoutHook,
     manageHook = myManageHook,
+    handleEventHook = docksEventHook <+> fullscreenEventHook,
     workspaces = myWorkspaces,
     modMask = mod4Mask,
     borderWidth = 5,
