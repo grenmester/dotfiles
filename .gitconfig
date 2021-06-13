@@ -30,6 +30,7 @@
   rmc = rm --cached
   s = status
   st = stash
+  std = stash drop
   stl = stash list
   stp = stash pop
 
