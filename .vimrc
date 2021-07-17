@@ -1,80 +1,85 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Plugins
 
-call plug#begin('~/.vim/plugged')
+if filereadable(expand('~/.vim/autoload/plug.vim'))
+  call plug#begin('~/.vim/plugged')
 
-" Colorscheme
-Plug 'lifepillar/vim-solarized8'
+  " Colorscheme
+  Plug 'lifepillar/vim-solarized8'
 
-" General
-Plug 'itchyny/lightline.vim'              " improved status bar
-Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
-Plug 'jreybert/vimagit'                   " add git workflow inside vim
-Plug 'junegunn/vim-peekaboo'              " show values of registers
-Plug 'kshenoy/vim-signature'              " show marks in sign column
-Plug 'lambdalisue/nerdfont.vim'           " nerd font support
-Plug 'majutsushi/tagbar'                  " generate and browse tags
-Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
-Plug 'mbbill/undotree'                    " undo history visualizer
-Plug 'mengelbrecht/lightline-bufferline'  " show buffers in tabline
-Plug 'niklaas/lightline-gitdiff'          " show git information in tabline
-Plug 'mhinz/vim-signify'                  " show VCS information in sign column
-Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
-Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
-Plug 'tpope/vim-surround'                 " text objects for parentheses
+  " General
+  Plug 'itchyny/lightline.vim'              " improved status bar
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'  " smartly set relativenumber
+  Plug 'jreybert/vimagit'                   " add git workflow inside vim
+  Plug 'junegunn/vim-peekaboo'              " show values of registers
+  Plug 'kshenoy/vim-signature'              " show marks in sign column
+  Plug 'lambdalisue/nerdfont.vim'           " nerd font support
+  Plug 'majutsushi/tagbar'                  " generate and browse tags
+  Plug 'markonm/traces.vim'                 " range, pattern, substitute preview
+  Plug 'mbbill/undotree'                    " undo history visualizer
+  Plug 'mengelbrecht/lightline-bufferline'  " show buffers in tabline
+  Plug 'niklaas/lightline-gitdiff'          " show git information in tabline
+  Plug 'mhinz/vim-signify'                  " show VCS information in sign column
+  Plug 'ntpeters/vim-better-whitespace'     " resolve trailing whitespace issues
+  Plug 'sjl/vitality.vim'                   " make focus events work inside tmux
+  Plug 'tpope/vim-surround'                 " text objects for parentheses
 
-" Language-specific
-Plug 'mattn/emmet-vim'
-Plug 'yuezk/vim-js'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
-Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim'
-Plug 'keith/tmux.vim'
-Plug 'mechatroner/rainbow_csv'
-Plug 'cespare/vim-toml'
-Plug 'maralla/vim-toml-enhance'
+  " Language-specific
+  Plug 'mattn/emmet-vim'
+  Plug 'yuezk/vim-js'
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'suan/vim-instant-markdown', {'on': 'InstantMarkdownPreview'}
+  Plug 'lervag/vimtex'
+  Plug 'KeitaNakamura/tex-conceal.vim'
+  Plug 'keith/tmux.vim'
+  Plug 'mechatroner/rainbow_csv'
+  Plug 'cespare/vim-toml'
+  Plug 'maralla/vim-toml-enhance'
 
-" Neovim-specific
-if has('nvim')
-  Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
+  " Neovim-specific
+  if has('nvim')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
+  endif
+
+  call plug#end()
+
+  let g:plug_window = 'vertical topleft 75new'
+  let g:peekaboo_delay = 1000
+  let g:better_whitespace_ctermcolor = 'grey'
+  let g:better_whitespace_guicolor = 'grey'
+  let g:strip_whitespace_on_save = 1
+  let g:strip_whitespace_confirm = 0
+  let g:instant_markdown_autostart = 0
+  let g:instant_markdown_slow = 1
+  let g:instant_markdown_mathjax = 1
+  let g:tex_flavor = 'latex'
+  let g:vimtex_compiler_progname = 'nvr'
+  let g:vimtex_view_method = 'zathura'
+  let g:coc_global_extensions = [
+        \   'coc-explorer',
+        \   'coc-snippets',
+        \   'coc-emmet',
+        \   'coc-html',
+        \   'coc-css',
+        \   'coc-eslint',
+        \   'coc-prettier',
+        \   'coc-markdownlint',
+        \   'coc-vimtex',
+        \   'coc-pyright',
+        \   'coc-vimlsp',
+        \   'coc-json',
+        \ ]
 endif
-
-call plug#end()
-
-let g:plug_window = 'vertical topleft 75new'
-let g:peekaboo_delay = 1000
-let g:better_whitespace_ctermcolor = 'grey'
-let g:better_whitespace_guicolor = 'grey'
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_slow = 1
-let g:instant_markdown_mathjax = 1
-let g:tex_flavor = 'latex'
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_view_method = 'zathura'
-let g:coc_global_extensions = [
-      \   'coc-explorer',
-      \   'coc-snippets',
-      \   'coc-emmet',
-      \   'coc-html',
-      \   'coc-css',
-      \   'coc-eslint',
-      \   'coc-prettier',
-      \   'coc-markdownlint',
-      \   'coc-vimtex',
-      \   'coc-pyright',
-      \   'coc-vimlsp',
-      \   'coc-json',
-      \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Colors
 
 set termguicolors               " enable true colors
-colorscheme solarized8
 set background=dark
+
+if filereadable(expand('~/.vim/autoload/plug.vim'))
+  colorscheme solarized8
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Status Bar
