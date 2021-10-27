@@ -1,6 +1,8 @@
 [global]
   follow = "mouse"                  # show messages on monitor with mouse
-  geometry = "400x5-20+50"          # set placement and boundaries of messages
+  width = 600
+  notification_limit = 5
+  offset = 20x50
   separator_height = 5
   padding = 10
   horizontal_padding = 10
@@ -15,36 +17,30 @@
   word_wrap = true                  # wrap lines instead of truncating
   icon_position = "left"
   max_icon_size = 48                # scale larger icons down to this size
-  icon_path = "/usr/share/icons/Papirus/48x48/emblems/"
+  icon_path = "/usr/share/icons/Papirus/48x48/emblems/:/usr/share/icons/Papirus/48x48/apps/"
   dmenu = "rofi -dmenu -p dunst"
   browser = "google-chrome-stable"
   mouse_left_click = "do_action, close_current"
   mouse_middle_click = "close_all"
   mouse_right_click = "close_current"
 
-[shortcuts]
-  close = "ctrl+space"
-  close_all = "ctrl+shift+space"
-  history = "ctrl+grave"
-  context = "ctrl+shift+period"
-
 [urgency_low]
   background = "#073642"
   foreground = "#93a1a1"
   frame_color = "#859900"
   timeout = 10
-  icon = "emblem-information"
+  new_icon = "emblem-information"
 
 [urgency_normal]
   background = "#073642"
   foreground = "#93a1a1"
   frame_color = "#268bd2"
   timeout = 10
-  icon = "emblem-warning"
+  new_icon = "emblem-warning"
 
 [urgency_critical]
   background = "#073642"
   foreground = "#93a1a1"
   frame_color = "#dc322f"
   timeout = 0
-  icon = "emblem-error"
+  new_icon = "emblem-error"
