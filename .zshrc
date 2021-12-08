@@ -163,10 +163,10 @@ export HISTFILE=~/.zsh_history
 export HISTIGNORE="l:ls:[bf]g:exit:reset:clear:htop"
 
 # Number of lines saved in a session
-export HISTSIZE=25000
+export HISTSIZE=2500000
 
 # Number of lines saved in the history file
-export SAVEHIST=10000
+export SAVEHIST=1000000
 
 # Use OS-provided locking mechanisms for the history file if available to possibly improve performance and decrease the chance of corruption
 setopt hist_fcntl_lock
