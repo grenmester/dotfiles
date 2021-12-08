@@ -3,15 +3,19 @@
 ############################################################################
 #### Plugins
 
-if [[ -f $HOME/.zinit/bin/zinit.zsh ]]; then
-  source $HOME/.zinit/bin/zinit.zsh
+if [[ -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+  source $HOME/.local/share/zinit/zinit.git/zinit.zsh
   autoload -Uz _zinit
   (( ${+_comps} )) && _comps[zinit]=_zinit
 
   zinit light-mode lucid wait for \
     atload"zicompinit; zicdreplay" blockf zsh-users/zsh-completions \
-    zdharma/history-search-multi-word \
-    zsh-users/zsh-syntax-highlighting
+    zdharma-continuum/fast-syntax-highlighting \
+    zdharma-continuum/history-search-multi-word \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
   zstyle ":history-search-multi-word" highlight-color "fg=black,bg=yellow"
 fi
