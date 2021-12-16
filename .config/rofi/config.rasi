@@ -19,124 +19,124 @@ configuration {
   text-color: @text-base-color;
 }
 
-#window {
+window {
   background-color: @border-color;
   padding: 5;
 }
 
-#inputbar {
+inputbar {
   children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows];
   padding: 4px 4px 0px 4px;
   text-color: inherit;
 }
 
-#prompt {
+prompt {
   padding: 2px 0px 2px 4px;
   text-color: inherit;
 }
 
-#textbox-prompt-colon {
+textbox-prompt-colon {
   expand: false;
   padding: 2px 2px 2px 0px;
   str: ":";
   text-color: inherit;
 }
 
-#entry {
+entry {
   padding: 2px 0px 2px 4px;
   placeholder-color: inherit;
   text-color: inherit;
 }
 
-#num-filtered-rows {
+num-filtered-rows {
   padding: 2px 0px 2px 4px;
   text-color: inherit;
 }
 
-#textbox-num-sep {
+textbox-num-sep {
   expand: false;
   padding: 2px 0px 2px 0px;
   str: "/";
   text-color: inherit;
 }
 
-#num-rows {
+num-rows {
   padding: 2px 4px 2px 0px;
   text-color: inherit;
 }
 
-#message {
+message {
   border-color: @selected-color;
   border: 1px dash 0px 0px 0px;
   padding: 4px 10px 0px 10px;
   text-color: inherit;
 }
 
-#textbox {
+textbox {
   text-color: inherit;
 }
 
-#listview {
+listview {
   border-color: @selected-color;
   border: 1px dash 0px 0px 0px;
   padding: 2px 0px 2px 0px;
   scrollbar: true;
 }
 
-#element {
+element {
   padding: 2px 0px 2px 10px;
 }
 
-#element.normal.normal {
+element normal.normal {
   background-color: inherit;
   text-color: inherit;
 }
 
-#element.normal.active {
+element normal.active {
   background-color: inherit;
   text-color: @active-color;
 }
 
-#element.normal.urgent {
+element normal.urgent {
   background-color: inherit;
   text-color: @urgent-color;
 }
 
-#element.alternate.normal {
+element alternate.normal {
   background-color: inherit;
   text-color: inherit;
 }
 
-#element.alternate.active {
+element alternate.active {
   background-color: inherit;
   text-color: @active-color;
 }
 
-#element.alternate.urgent {
+element alternate.urgent {
   background-color: inherit;
   text-color: @urgent-color;
 }
 
-#element.selected.normal {
+element selected.normal {
   background-color: @selected-color;
   text-color: @base-color;
 }
 
-#element.selected.active {
+element selected.active {
   background-color: @active-color;
   text-color: inherit;
 }
 
-#element.selected.urgent {
+element selected.urgent {
   background-color: @urgent-color;
   text-color: inherit;
 }
 
-#scrollbar {
+scrollbar {
   handle-color: @border-color;
 }
 
-#button.selected {
+button selected {
   background-color: @selected-color;
   text-color: @text-base-color;
 }
