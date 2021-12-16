@@ -26,42 +26,60 @@ configuration {
 
 #inputbar {
   children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows];
-  padding: 4px 4px 2px 4px;
+  padding: 4px 4px 0px 4px;
+  text-color: inherit;
 }
 
 #prompt {
   padding: 2px 0px 2px 4px;
+  text-color: inherit;
 }
 
 #textbox-prompt-colon {
   expand: false;
   padding: 2px 2px 2px 0px;
   str: ":";
+  text-color: inherit;
 }
 
 #entry {
   padding: 2px 0px 2px 4px;
+  placeholder-color: inherit;
+  text-color: inherit;
 }
 
 #num-filtered-rows {
   padding: 2px 0px 2px 4px;
+  text-color: inherit;
 }
 
 #textbox-num-sep {
   expand: false;
   padding: 2px 0px 2px 0px;
   str: "/";
+  text-color: inherit;
 }
 
 #num-rows {
   padding: 2px 4px 2px 0px;
+  text-color: inherit;
 }
 
 #message {
-  padding: 4px 10px 4px 10px;
+  border-color: @selected-color;
+  border: 1px dash 0px 0px 0px;
+  padding: 4px 10px 0px 10px;
+  text-color: inherit;
+}
+
+#textbox {
+  text-color: inherit;
 }
 
 #listview {
+  border-color: @selected-color;
+  border: 1px dash 0px 0px 0px;
+  padding: 2px 0px 2px 0px;
   scrollbar: true;
 }
 
@@ -69,19 +87,33 @@ configuration {
   padding: 2px 0px 2px 10px;
 }
 
+#element.normal.normal {
+  background-color: inherit;
+  text-color: inherit;
+}
+
 #element.normal.active {
+  background-color: inherit;
   text-color: @active-color;
 }
 
 #element.normal.urgent {
+  background-color: inherit;
   text-color: @urgent-color;
 }
 
+#element.alternate.normal {
+  background-color: inherit;
+  text-color: inherit;
+}
+
 #element.alternate.active {
+  background-color: inherit;
   text-color: @active-color;
 }
 
 #element.alternate.urgent {
+  background-color: inherit;
   text-color: @urgent-color;
 }
 
@@ -92,12 +124,12 @@ configuration {
 
 #element.selected.active {
   background-color: @active-color;
-  text-color: @text-base-color;
+  text-color: inherit;
 }
 
 #element.selected.urgent {
   background-color: @urgent-color;
-  text-color: @text-base-color;
+  text-color: inherit;
 }
 
 #scrollbar {
