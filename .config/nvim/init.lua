@@ -36,10 +36,13 @@ require("packer").startup(function()
   use("saadparwaiz1/cmp_luasnip")
   use("rafamadriz/friendly-snippets")
   -- Language-specific
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
 end)
 
-vim.g.python3_host_prog = "/usr/bin/python"
+vim.g.python3_host_prog = "/usr/local/bin/python3"
 vim.g.peekaboo_delay = 1000
 vim.g.better_whitespace_ctermcolor = "grey"
 vim.g.better_whitespace_guicolor = "grey"
@@ -50,29 +53,40 @@ vim.g.strip_whitespace_on_save = 1
 
 require("gitsigns").setup({
   on_attach = function(bufnr)
-    local function map(mode, lhs, rhs, opts)
-      opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
-      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
     end
 
-    map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-    map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
-    map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>")
-    map("v", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>")
-    map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
-    map("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
-    map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
-    map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
-    map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
-    map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
-    map("n", "<leader>hb", "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>")
-    map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
-    map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
-    map("n", "<leader>hD", "<cmd>lua require'gitsigns'.diffthis('~')<CR>")
-    map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
-    map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-    map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-  end,
+    -- Navigation
+    map("n", "]c", function()
+      if vim.wo.diff then return "]c" end
+      vim.schedule(function() gs.next_hunk() end)
+      return "<Ignore>"
+    end, {expr=true})
+    map("n", "[c", function()
+      if vim.wo.diff then return "[c" end
+      vim.schedule(function() gs.prev_hunk() end)
+      return "<Ignore>"
+    end, {expr=true})
+    -- Actions
+    map({"n", "v"}, "<leader>hs", ":Gitsigns stage_hunk<CR>")
+    map({"n", "v"}, "<leader>hr", ":Gitsigns reset_hunk<CR>")
+    map("n", "<leader>hS", gs.stage_buffer)
+    map("n", "<leader>hu", gs.undo_stage_hunk)
+    map("n", "<leader>hR", gs.reset_buffer)
+    map("n", "<leader>hp", gs.preview_hunk)
+    map("n", "<leader>hb", function() gs.blame_line{full=true} end)
+    map("n", "<leader>tb", gs.toggle_current_line_blame)
+    map("n", "<leader>hd", gs.diffthis)
+    map("n", "<leader>hD", function() gs.diffthis("~") end)
+    map("n", "<leader>td", gs.toggle_deleted)
+    -- Text object
+    map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+  end
 })
 
 --- Lualine
@@ -155,19 +169,38 @@ null_ls.setup({
 --- Treesitter
 
 require("nvim-treesitter.configs").setup({
+  auto_install = true,
   context_commentstring = { enable = true },
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "help",
+    "diff",
+    "lua",
+    "markdown",
+    "python",
+    "cpp",
+    "javascript",
+    "typescript",
+  },
   highlight = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
   indent = { enable = true },
   textobjects = {
     select = {
       enable = true,
       lookahead = true,
       keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
       },
     },
   },
@@ -248,7 +281,7 @@ cmp.setup({
 
 vim.opt.termguicolors = true                      -- enable true colors
 vim.opt.background = "dark"
-vim.cmd([[colorscheme solarized8]])
+vim.cmd.colorscheme("solarized8")
 
 --------------------------------------------------------------------------------
 ---- UI Layout
@@ -302,20 +335,19 @@ vim.opt.eventignore = "FocusLost"                 -- ignore FocusLost event
 vim.opt.foldmethod = "expr"                       -- use custom folding
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"   -- use treesitter for folding
 vim.opt.foldlevelstart = 99                       -- open all folds initially
+vim.opt.scrolloff = 8                             -- minimum lines to keep above and below cursor
 
 --------------------------------------------------------------------------------
 ---- Key Mappings
 
--- save keystrokes
-vim.api.nvim_set_keymap("n", "<C-H>", "<C-W><C-H>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-J>", "<C-W><C-J>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-K>", "<C-W><C-K>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-L>", "<C-W><C-L>", { noremap = true })
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
-
+-- center cursor after move operations
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+-- easier terminal escape
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- toggle undo tree window
-vim.api.nvim_set_keymap("n", "<C-t>", "<cmd>UndotreeToggle<CR>", { noremap = true })
--- stop highlighting search text
-vim.api.nvim_set_keymap("n", ",/", "<cmd>nohlsearch<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 -- insert a newline in normal mode
-vim.api.nvim_set_keymap("n", "<C-o>", "<cmd>set paste<CR>m`o<Esc>``:set nopaste<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-o>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = true })
