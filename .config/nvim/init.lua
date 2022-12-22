@@ -17,14 +17,16 @@ require("packer").startup(function()
   use("nvim-lualine/lualine.nvim")          -- improved status line
   use("tpope/vim-commentary")               -- code comment operators
   use("tpope/vim-surround")                 -- text objects for pairs
-  -- LSP
-  use("neovim/nvim-lspconfig")
-  use("williamboman/nvim-lsp-installer")
-  use("jose-elias-alvarez/null-ls.nvim")
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("JoosepAlviste/nvim-ts-context-commentstring")
+  -- LSP
+  use("neovim/nvim-lspconfig")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use("jose-elias-alvarez/null-ls.nvim")
+  use("jayp0521/mason-null-ls.nvim")
   -- Completion
   use("hrsh7th/nvim-cmp")
   use("onsails/lspkind-nvim")
@@ -38,7 +40,9 @@ require("packer").startup(function()
   -- Language-specific
   use({
     "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   })
 end)
 
@@ -63,30 +67,42 @@ require("gitsigns").setup({
 
     -- Navigation
     map("n", "]c", function()
-      if vim.wo.diff then return "]c" end
-      vim.schedule(function() gs.next_hunk() end)
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
       return "<Ignore>"
-    end, {expr=true})
+    end, { expr = true })
     map("n", "[c", function()
-      if vim.wo.diff then return "[c" end
-      vim.schedule(function() gs.prev_hunk() end)
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
       return "<Ignore>"
-    end, {expr=true})
+    end, { expr = true })
     -- Actions
-    map({"n", "v"}, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-    map({"n", "v"}, "<leader>hr", ":Gitsigns reset_hunk<CR>")
+    map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
+    map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
     map("n", "<leader>hS", gs.stage_buffer)
     map("n", "<leader>hu", gs.undo_stage_hunk)
     map("n", "<leader>hR", gs.reset_buffer)
     map("n", "<leader>hp", gs.preview_hunk)
-    map("n", "<leader>hb", function() gs.blame_line{full=true} end)
+    map("n", "<leader>hb", function()
+      gs.blame_line({ full = true })
+    end)
     map("n", "<leader>tb", gs.toggle_current_line_blame)
     map("n", "<leader>hd", gs.diffthis)
-    map("n", "<leader>hD", function() gs.diffthis("~") end)
+    map("n", "<leader>hD", function()
+      gs.diffthis("~")
+    end)
     map("n", "<leader>td", gs.toggle_deleted)
     -- Text object
-    map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-  end
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+  end,
 })
 
 --- Lualine
@@ -95,75 +111,6 @@ require("lualine").setup({
   options = { theme = "solarized" },
   sections = { lualine_x = { "filetype" } },
   tabline = { lualine_b = { "buffers" }, lualine_y = { "tabs" } },
-})
-
---- LSP
-
--- update diagnostics even in insert mode
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  { update_in_insert = true }
-)
-
--- show diagnostic source
-vim.diagnostic.config({ virtual_text = { source = true } })
-
-local function on_attach(client, bufnr)
-  local function map(lhs, rhs)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", lhs, rhs, { noremap = true, silent = true })
-  end
-
-  map("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-  map("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-  map("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  map("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-  map("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  map("<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-  map("<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-  map("<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-  map("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-  map("<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
-  map("[d", "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>")
-  map("]d", "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>")
-  map("<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
-  map("<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
-end
-
-require("nvim-lsp-installer").on_server_ready(function(server)
-  local opts = { on_attach = on_attach }
-
-  if server.name == "sumneko_lua" then
-    opts = vim.tbl_deep_extend(
-      "force",
-      { settings = { Lua = { diagnostics = { globals = { "vim", "use" } } } } },
-      opts
-    )
-  end
-
-  server:setup(opts)
-end)
-
-local null_ls = require("null-ls")
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.diagnostics.markdownlint,
-    null_ls.builtins.diagnostics.pylint,
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.diagnostics.cppcheck,
-    null_ls.builtins.formatting.stylua,
-  },
 })
 
 --- Treesitter
@@ -206,57 +153,109 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+--- LSP
+
+-- show diagnostic source
+vim.diagnostic.config({ virtual_text = { source = true } })
+
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+
+local on_attach = function(_, bufnr)
+  local opts = { buffer = bufnr }
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+  vim.keymap.set("n", "<space>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, opts)
+  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<space>f", function()
+    vim.lsp.buf.format({ async = true })
+  end, opts)
+end
+
+require("mason").setup()
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "sumneko_lua",
+    "marksman",
+    "pyright",
+    "clangd",
+    "tsserver",
+    "tailwindcss",
+  },
+})
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+require("mason-lspconfig").setup_handlers({
+  function(server_name)
+    require("lspconfig")[server_name].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+  end,
+
+  -- override targetted servers
+  ["sumneko_lua"] = function()
+    require("lspconfig")["sumneko_lua"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = { Lua = { diagnostics = { globals = { "use", "vim" } } } },
+    })
+  end,
+})
+
+local code_actions = require("null-ls").builtins.code_actions
+local diagnostics = require("null-ls").builtins.diagnostics
+local formatting = require("null-ls").builtins.formatting
+
+require("null-ls").setup({
+  sources = {
+    code_actions.gitsigns,
+    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
+    diagnostics.markdownlint,
+    diagnostics.pylint,
+    diagnostics.mypy,
+    formatting.isort,
+    formatting.black,
+    diagnostics.cppcheck,
+    diagnostics.eslint_d,
+    formatting.prettierd,
+  },
+})
+
+require("mason-null-ls").setup({ automatic_installation = true })
+
 --- Completion
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-require("luasnip/loaders/from_vscode").lazy_load()
-
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable,
-    ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-    ["<CR>"] = cmp.mapping.confirm(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-  },
-  sources = cmp.config.sources(
-    { { name = "nvim_lsp" }, { name = "luasnip" } },
-    { { name = "buffer" } },
-    { { name = "path" } }
-  ),
+  -- disable completion in comments
+  enabled = function()
+    local context = require("cmp.config.context")
+    -- keep command mode completion enabled when cursor is in a comment
+    if vim.api.nvim_get_mode().mode == "c" then
+      return true
+    else
+      return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+    end
+  end,
   experimental = { ghost_text = true },
   formatting = {
     fields = { "abbr", "kind", "menu" },
@@ -266,14 +265,44 @@ cmp.setup({
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
           luasnip = "[Snippet]",
-          buffer = "[File]",
+          buffer = "[Buffer]",
           path = "[Path]",
         })[entry.source.name]
-
         return vim_item
       end,
     }),
   },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm(),
+    ["<Tab>"] = function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end,
+    ["<S-Tab>"] = function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+  }),
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  sources = cmp.config.sources(
+    { { name = "nvim_lsp" }, { name = "luasnip" } },
+    { { name = "buffer" } },
+    { { name = "path" } }
+  ),
 })
 
 --------------------------------------------------------------------------------
