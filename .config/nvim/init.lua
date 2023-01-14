@@ -236,6 +236,7 @@ require("null-ls").setup({
     diagnostics.cppcheck,
     diagnostics.eslint_d,
     formatting.prettierd,
+    formatting.rustywind,
   },
 })
 
