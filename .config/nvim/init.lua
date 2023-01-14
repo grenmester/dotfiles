@@ -37,6 +37,9 @@ require("packer").startup(function()
   use("L3MON4D3/LuaSnip")
   use("saadparwaiz1/cmp_luasnip")
   use("rafamadriz/friendly-snippets")
+  -- Telescope
+  use("nvim-telescope/telescope.nvim")
+  use({"nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   -- Language-specific
   use({
     "iamcco/markdown-preview.nvim",
@@ -304,6 +307,17 @@ cmp.setup({
     { { name = "path" } }
   ),
 })
+
+--------------------------------------------------------------------------------
+---- Telescope
+
+require("telescope").load_extension("fzf")
+
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 --------------------------------------------------------------------------------
 ---- Colors
