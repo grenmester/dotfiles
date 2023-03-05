@@ -191,7 +191,7 @@ require("mason").setup()
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "sumneko_lua",
+    "lua_ls",
     "marksman",
     "pyright",
     "clangd",
@@ -211,8 +211,8 @@ require("mason-lspconfig").setup_handlers({
   end,
 
   -- override targetted servers
-  ["sumneko_lua"] = function()
-    require("lspconfig")["sumneko_lua"].setup({
+  ["lua_ls"] = function()
+    require("lspconfig")["lua_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       settings = { Lua = { diagnostics = { globals = { "use", "vim" } } } },
