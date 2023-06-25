@@ -1,32 +1,32 @@
 Config {
-  font = "xft:FiraCode Nerd Font:bold:pixelsize=20,Noto Sans Mono CJK SC:bold:pixelsize=18",
-  additionalFonts = ["xft:FiraCode Nerd Font:pixelsize=20,Noto Sans Mono CJK SC:pixelsize=18"],
+  font = "FiraCode Nerd Font Bold 20",
+  additionalFonts = ["FiraCode Nerd Font 20"],
   bgColor = "#002b36",
   fgColor = "#93a1a1",
   commands = [
     Run UnsafeStdinReader,
-    Run Memory ["--template", "<fc=#d33682>\xf85a </fc><usedratio>%"] 50,
-    Run Cpu ["--template", "<fc=#dc322f>\xf6c3 </fc><total>%"] 50,
+    Run Memory ["--template", "<fc=#d33682>\xf035b </fc><usedratio>%"] 50,
+    Run Cpu ["--template", "<fc=#dc322f>\xf01c4 </fc><total>%"] 50,
     Run Brightness [
-      "--template", "<fc=#cb4b16>\xfaa7 </fc><percent>%",
+      "--template", "<fc=#cb4b16>\xf05a8 </fc><percent>%",
       "--",
       "-D", "intel_backlight"
       ] 50,
     Run Alsa "default" "Master" [
       "--template", "<status><volume>%",
       "--",
-      "--on", "<fc=#b58900>\xfa7d </fc>",
-      "--off", "<fc=#b58900>\xfa80 </fc>"
+      "--on", "<fc=#b58900>\xf057e </fc>",
+      "--off", "<fc=#b58900>\xf0581 </fc>"
       ],
     Run Battery [
       "--template", "<leftipat><left>% (<timeleft>)",
       "--",
-      "--on-icon-pattern", "<fc=#859900>\xf583 </fc>",
-      "--off-icon-pattern", "<fc=#859900>\xf57d </fc>",
-      "--idle-icon-pattern", "<fc=#859900>\xf578 </fc>"
+      "--on-icon-pattern", "<fc=#859900>\xf0084 </fc>",
+      "--off-icon-pattern", "<fc=#859900>\xf007e </fc>",
+      "--idle-icon-pattern", "<fc=#859900>\xf0079 </fc>"
       ] 50,
-    Run Date "<fc=#2aa198>\xf5ed </fc>%m/%d/%Y" "date" 50,
-    Run Date "<fc=#268bd2>\xf64f </fc>%a %H:%M" "time" 50
+    Run Date "<fc=#2aa198>\xf00ee </fc>%m/%d/%Y" "date" 50,
+    Run Date "<fc=#268bd2>\xf0150 </fc>%a %H:%M" "time" 50
     ],
   sepChar = "%",
   alignSep = "}{",
