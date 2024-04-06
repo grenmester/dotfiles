@@ -39,7 +39,7 @@ require("packer").startup(function()
   use("rafamadriz/friendly-snippets")
   -- Telescope
   use("nvim-telescope/telescope.nvim")
-  use({"nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   -- Language-specific
   use({
     "iamcco/markdown-preview.nvim",
@@ -120,9 +120,7 @@ require("lualine").setup({
 
 require("nvim-treesitter.configs").setup({
   auto_install = true,
-  context_commentstring = { enable = true },
   ensure_installed = {
-    "help",
     "diff",
     "lua",
     "markdown",
@@ -161,6 +159,15 @@ require("nvim-treesitter.configs").setup({
 -- show diagnostic source
 vim.diagnostic.config({ virtual_text = { source = true } })
 
+local diagnostics_active = true
+vim.keymap.set("n", "<space>d", function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.show()
+  else
+    vim.diagnostic.hide()
+  end
+end)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
@@ -187,7 +194,9 @@ local on_attach = function(_, bufnr)
   end, opts)
 end
 
-require("mason").setup()
+require("mason").setup({
+  PATH = "append",
+})
 
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -196,11 +205,21 @@ require("mason-lspconfig").setup({
     "pyright",
     "clangd",
     "tsserver",
+    "emmet_language_server",
     "tailwindcss",
   },
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  }
+  vim.lsp.buf.execute_command(params)
+end
 
 require("mason-lspconfig").setup_handlers({
   function(server_name)
@@ -218,6 +237,18 @@ require("mason-lspconfig").setup_handlers({
       settings = { Lua = { diagnostics = { globals = { "use", "vim" } } } },
     })
   end,
+  ["tsserver"] = function()
+    require("lspconfig")["tsserver"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      commands = {
+        OrganizeImports = {
+          organize_imports,
+          description = "Organize Imports",
+        },
+      },
+    })
+  end,
 })
 
 local code_actions = require("null-ls").builtins.code_actions
@@ -233,7 +264,8 @@ require("null-ls").setup({
     diagnostics.mypy,
     formatting.isort,
     formatting.black,
-    diagnostics.cppcheck,
+    diagnostics.cppcheck.with({ extra_args = { "--suppress=noExplicitConstructor" } }),
+    formatting.clang_format,
     diagnostics.eslint_d,
     formatting.prettierd,
     formatting.rustywind,
@@ -377,7 +409,8 @@ vim.opt.clipboard = "unnamedplus"                 -- enable copy and paste into 
 vim.opt.mouse = "a"                               -- enable mouse support
 vim.opt.eventignore = "FocusLost"                 -- ignore FocusLost event
 vim.opt.foldmethod = "expr"                       -- use custom folding
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"   -- use treesitter for folding
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- use treesitter for folding
+-- vim.opt.foldtext=""
 vim.opt.foldlevelstart = 99                       -- open all folds initially
 vim.opt.scrolloff = 8                             -- minimum lines to keep above and below cursor
 
