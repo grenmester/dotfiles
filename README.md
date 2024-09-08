@@ -55,7 +55,7 @@ Here we see `xmonad` with floating windows containing `emacs`, `lxappearance`,
     `zgen`, and `antigen`
   * `fish`-style syntax highlighting with `zsh-syntax-highlighting`
   * improved reverse history search with `history-search-multi-word`
-  * better `ls` aliases with `exa`
+  * better `ls` aliases with `eza`
   * substring completions using `zstyle` completion system
   * colored man pages
   * displays error code in right prompt
@@ -75,8 +75,8 @@ Here we see `xmonad` with floating windows containing `emacs`, `lxappearance`,
     restart with `tmux-resurrect`
 * Git
   * most common version control system compared with `hg` and `svn`
-  * uses `hub`, extension to command-line `git`
-  * aliases for commonly run `git` and `hub` commands
+  * uses `gh`, extension to command-line `git`
+  * aliases for commonly run `git` commands
   * prettier `log` and `reflog` aliases
   * global `.gitignore` file applied to all `git` repositories
 * XMonad
@@ -108,7 +108,7 @@ Here we see `xmonad` with floating windows containing `emacs`, `lxappearance`,
 
 ## Installation
 
-These instructions are for Arch Linux distributions. I use `yay` to install AUR
+These instructions are for Arch Linux distributions. I use `paru` to install AUR
 packages. For macOS, replacing `pacman -S` with `brew install` will generally
 work, assuming you have `brew` installed.
 
@@ -125,10 +125,9 @@ computer.
 
 Optional utilities:
 
-    pacman -S exa hub
+    pacman -S eza github-cli
 
-You may want to set up a personal access token so `hub` can access the GitHub
-API.
+You may use `gh auth login` to authenticate to GitHub.
 
 ### Neovim
 
@@ -178,10 +177,10 @@ Run `<prefix> I` to install plugins and `<prefix> U` to update plugins.
 * XMonad: `pacman -S xmonad xmonad-contrib`
 * Xmobar: `pacman -S xmobar`
 * Kitty: `pacman -S kitty xterm`
-* Rofi: `pacman -S rofi rofi-calc dmenu && yay -S rofi-emoji`
+* Rofi: `pacman -S rofi rofi-calc dmenu && paru -S rofi-emoji`
 * Dunst: `pacman -S dunst libnotify`
-* Font: `yay -S nerd-fonts-fira-code`
-* GTK Theme: `yay -S gtk-theme-numix-solarized`
+* Font: `paru -S nerd-fonts-fira-code`
+* GTK Theme: `paru -S gtk-theme-numix-solarized`
 * Icon Theme: `pacman -S papirus-icon-theme`
 
 Note that `xterm` and `dmenu` are not required but some programs may use them
@@ -194,18 +193,18 @@ might be worth mentioning include `emacs` (text editor), `picom` (compositor),
 `vifm` (file manager), `sxiv` (image viewer), `nitrogen` (wallpaper setter),
 and `pass` (password manager).
 
-More utilities that I use include `ripgrep`, `htop`, `bat`, `scrot`,
-`neofetch`, `rofi-pass`, and `arandr`. Some fun ones include `gotop`,
-`cmatrix`, `pipes.sh`, and `asciiquarium`.
+More utilities that I use include `ripgrep`, `fd`, `htop`, `bat`, `scrot`,
+`fastfetch`, `rofi-pass`, and `arandr`. Some fun ones include `cmatrix`,
+`pipes.sh`, and `asciiquarium`.
 
 ## Command/Keybinding Reference
 
-### Pacman/Yay Commands
+### Pacman/Paru Commands
 
     pacman -Syu               # upgrade repo packages
     pacman -S <package-name>  # install package from the Arch repositories
-    yay                       # upgrade AUR packages
-    yay -S <package-name>     # install package from the AUR
+    paru                      # upgrade AUR packages
+    paru -S <package-name>    # install package from the AUR
 
 ### Zsh Commands
 

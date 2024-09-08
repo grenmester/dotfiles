@@ -42,18 +42,16 @@ if (( $+commands[tmux] )); then
   alias t="tmux"
 fi
 
-if (( $+commands[hub] )); then
-  alias g="hub"
-elif (( $+commands[git] )); then
+if (( $+commands[git] )); then
   alias g="git"
 fi
 
-if (( $+commands[exa] )); then
+if (( $+commands[eza] )); then
   local ignore_list=".git|node_modules"
 
   l() {
     emulate -LR zsh
-    exa --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
+    eza --long --classify --color=always --color-scale --all --ignore-glob="${ignore_list}" --header --git "$@"
   }
 
   li() {

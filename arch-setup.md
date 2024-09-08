@@ -57,13 +57,13 @@ after installation.
 ## Arch User Repository
 
 The [Arch User Repository][aur] (AUR) contains packages submitted by users. To
-install these user contributed packages, an AUR helper such as [Yay][yay] is
+install these user contributed packages, an AUR helper such as [Paru][paru] is
 required.
 
     pacman -S git
-    git clone https://aur.archlinux.org/yay.git
-    cd yay && makepkg -si
-    cd .. && rm -rf yay
+    git clone https://aur.archlinux.org/paru.git
+    cd paru && makepkg -si
+    cd .. && rm -rf paru
 
 ## Graphical Environment
 

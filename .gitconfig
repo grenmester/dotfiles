@@ -8,6 +8,7 @@
   c = commit
   ca = commit --amend
   cm = commit --message
+  cam = commit --amend --message
   ce = clean
   cef = clean --force
   cefx = clean --force -x

@@ -6,4 +6,5 @@
 dunst &
 nitrogen --restore &
 picom &
+redshift &
 exec xmonad
