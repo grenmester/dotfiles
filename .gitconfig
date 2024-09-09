@@ -20,12 +20,12 @@
   pl = pull
   ps = push
   psf = push --force
-  psu = push --set-upstream
-  psuo = push --set-upstream origin
-  psuom = push --set-upstream origin master
   r = reset
   rh = reset --hard
+  re = restore
+  res = restore --staged
   rb = rebase
+  rba = rebase --abort
   rbc = rebase --continue
   rbi = rebase --interactive
   rmc = rm --cached
@@ -34,11 +34,6 @@
   std = stash drop
   stl = stash list
   stp = stash pop
-
-  ;; hub aliases
-  br = browse
-  cr = create
-  crp = create --private
 
   ;; prettier git log to quickly show commits
   hist = log --graph --pretty=format:'%C(red)%h%C(reset) %s%C(yellow)%d%C(green) (%cr)%C(blue) [%an]%C(reset)' --abbrev-commit --date=relative
@@ -49,7 +44,7 @@
   ;; prettier git reflog
   rlog = reflog --pretty=format:'%C(red)%h%C(reset) %C(ul)%gD%C(reset): %gs%C(yellow)%d%C(green) (%ar)%C(blue) [%an]%C(reset)'
 
-[branch "master"]
+[branch "main"]
   remote = origin
 
 [color]
@@ -83,12 +78,24 @@
 
 [core]
   excludesfile = ~/.gitignore
+  pager = delta
+
+[delta]
+  line-numbers = true
+  navigate = true
 
 [grep]
   linenumber = true
+
+[init]
+  defaultBranch = main
+
+[merge]
+  conflictstyle = diff3
 
 [pull]
   rebase = false
 
 [push]
+  autoSetupRemote = true
   default = simple
