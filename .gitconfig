@@ -5,6 +5,8 @@
   b = branch
   ba = branch --all
   bd = branch --delete
+  bdf = branch --delete --force
+  bm = branch --move
   c = commit
   ca = commit --amend
   cm = commit --message
@@ -18,8 +20,11 @@
   d = diff
   dc = diff --cached
   pl = pull
+  plp = pull --prune
   ps = push
   psf = push --force
+  psu = push --set-upstream
+  psuo = push --set-upstream origin
   r = reset
   rh = reset --hard
   rb = rebase
@@ -88,7 +93,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-  pager = delta
+  pager = delta --side-by-side
 
 [delta]
   line-numbers = true
